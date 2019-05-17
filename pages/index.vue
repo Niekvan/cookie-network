@@ -5,6 +5,7 @@
       <h1 class="title">
         cookie-network
       </h1>
+      <h1>id: {{ ID }}</h1>
       <h2 class="subtitle">
         Explore the network behind your cookie pop ups
       </h2>
@@ -25,10 +26,14 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     Logo
+  },
+  computed: {
+    ...mapState(['ID'])
   }
 }
 </script>

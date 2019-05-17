@@ -1,5 +1,7 @@
 import pkg from './package'
 
+require('dotenv').config()
+
 export default {
   mode: 'universal',
 
@@ -37,13 +39,32 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/style-resources',
+    'cookie-universal-nuxt'
   ],
+  /*
+   ** Global Sas variables and mixins
+   */
+  styleResources: {
+    scss: ['./assets/scss/abstracts/*.scss']
+  },
   /*
    ** Axios module configuration
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    proxy: true
+  },
+
+  proxy: {
+    '/api': {
+      target: process.env.API_URL,
+      changeOrigin: true,
+      headers: {
+        'access-token': process.env.LOCAL_API_KEY
+      }
+    }
   },
 
   /*
