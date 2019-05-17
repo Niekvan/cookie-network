@@ -1,0 +1,150 @@
+<template>
+  <nav class="nav">
+    <ul class="nav__container">
+      <li
+        v-for="(layer, key) in layers"
+        :key="key"
+        :class="key"
+        :style="{ opacity: active.includes(key) ? 0.9 : 0.2 }"
+        class="nav__item"
+      >
+        <div class="nav__content">
+          <h2 class="nav__title">
+            {{ key }}
+          </h2>
+          <p class="nav__text">
+            {{ layer.text }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      layers: {
+        connected: {
+          text:
+            'This layer shows all the websites you have visited who are connected to one of the highlighted companies'
+        },
+        companies: {
+          text:
+            'This layers shows all the companies with access to the selected website you have visited before'
+        },
+        domains: {
+          text:
+            'This layer shows all the domains that are used to collect information from you'
+        },
+        subdomains: {
+          text:
+            'This layer shows all the different logistic centers through which the information is send further'
+        },
+        cookies: {
+          text:
+            'This layer shows all the cookies connected to the selected website'
+        },
+        visited: {
+          text:
+            'This layer shows all the websites you have visited since installing the plugin'
+        }
+      },
+      active: ['connected', 'companies', 'domains', 'subdomains', 'visited']
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.nav {
+  width: 100%;
+
+  &__container {
+    display: block;
+    width: 80%;
+    margin: auto;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  &__item {
+    width: 70%;
+    padding-bottom: 70%;
+    position: relative;
+    perspective: 400px;
+    transform: rotatex(70deg) rotateZ(30deg);
+    transition: all 1s 0.2s;
+
+    &:not(:first-child) {
+      margin-top: -50%;
+    }
+
+    &.connected {
+      background: $color-connected;
+      color: $color-text-inverse;
+      z-index: 6;
+    }
+
+    &.companies {
+      background: $color-company;
+      z-index: 5;
+    }
+
+    &.domains {
+      background: $color-domain;
+      color: $color-text-inverse;
+      z-index: 4;
+    }
+
+    &.subdomains {
+      background: $color-subdomain;
+      z-index: 3;
+    }
+
+    &.cookies {
+      background: $color-cookie;
+      color: $color-text-inverse;
+      z-index: 2;
+    }
+
+    &.visited {
+      background: $color-visited;
+      color: $color-text-inverse;
+      z-index: 1;
+    }
+
+    &:hover {
+      transform: rotatex(0deg) rotateZ(0deg) translateZ(100px);
+      width: 100%;
+      padding-bottom: 100%;
+      z-index: 10;
+      transition: all 1s;
+
+      .nav__content {
+        opacity: 1;
+        transition: opacity 0.2s 1s;
+      }
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem 2rem;
+    opacity: 0;
+    transition: opacity 0.2s 0s;
+  }
+
+  &__title {
+    display: inline-block;
+  }
+
+  &__text {
+    display: inline-block;
+    margin: 0;
+  }
+}
+</style>

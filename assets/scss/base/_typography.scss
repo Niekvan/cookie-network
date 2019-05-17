@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'SchulBuchNord';
+  src: url('~assets//fonts/Schoolboek-Regular.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SchulbuchNord';
+  src: url('~assets/fonts/SchulbuchNord-Fett.woff2') format('woff2'),
+    url('~assets/fonts/SchulbuchNord-Fett.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+html {
+  font-family: 'SchulBuchNord', sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  line-height: 1.4;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: $primary;
+}

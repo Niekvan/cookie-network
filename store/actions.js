@@ -1,5 +1,9 @@
 import * as types from './mutation-types'
 
+export const setPending = ({ commit }, payload) => {
+  commit(types.SET_PENDING, payload)
+}
+
 export const nuxtServerInit = async function({ commit, state }, { app }) {
   const cookie = await app.$cookies.get('map-identifier')
   if (cookie) {
