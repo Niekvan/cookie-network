@@ -1,11 +1,9 @@
 <template>
+<!-- eslint-disable -->
   <g
     class="node"
-    :class="node"
-    :transform="
-      `translate(${(screen.width / length) * index},${(screen.height / levels) *
-        level})`
-    "
+    :class="node.value"
+    :transform="`translate(${node.x},${node.y})`"
   >
     <circle class="node__circle" r="5" />
     <text
@@ -14,7 +12,7 @@
       transform="rotate(45, 0, 9)"
       y="9"
     >
-      {{ node.replace(/http(s)?:\/\/(www.)?/, '') }}
+      {{ node.value.replace(/http(s)?:\/\/(www.)?/, '') }}
     </text>
   </g>
 </template>
@@ -43,8 +41,8 @@ export default {
       default: 5
     },
     node: {
-      type: String,
-      default: ''
+      type: Object,
+      default() {}
     },
     screen: {
       type: Object,
@@ -69,6 +67,7 @@ export default {
 
   &:hover {
     opacity: 1;
+    cursor: pointer;
     .node__text {
       opacity: 1;
     }

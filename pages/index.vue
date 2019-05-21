@@ -1,36 +1,51 @@
 <template>
   <section class="container">
-    <graph class="graph" :data="formattedCookies" />
-    <div class="side-bar">
-      <h1 class="side-bar__title">The cookie network</h1>
-      <p class="side-bar__body">Some explenatory text about the project</p>
-      <Menu class="menu" />
-    </div>
-    <div class="loading" :class="{ pending: pending }" />
+    <intro
+      :class="{ active: activeTabs.includes('intro') }"
+      @click.native="updateActiveTabs('intro')"
+    />
+    <explore
+      :class="{ active: activeTabs.includes('explore') }"
+      @click.native="updateActiveTabs('explore')"
+    />
+    <about
+      :class="{ active: activeTabs.includes('about') }"
+      @click.native="updateActiveTabs('about')"
+    />
   </section>
 </template>
 
 <script>
-import Graph from '~/components/Graph.vue'
-import Menu from '~/components/Menu.vue'
-import { mapState } from 'vuex'
+import Intro from '~/components/pages/Intro.vue'
+import About from '~/components/pages/About.vue'
+import Explore from '~/components/pages/Explore.vue'
 
 export default {
   components: {
-    Graph,
-    Menu
+    Intro,
+    About,
+    Explore
   },
-  computed: {
-    formattedCookies() {
-      const pattern = new RegExp(/^(.+)?(\..+){2}$/)
-      return this.cookies.map(item => {
-        item.subDomain = pattern.test(item.sub_domain)
-          ? item.sub_domain
-          : `.${item.sub_domain}`
-        return item
-      })
-    },
-    ...mapState(['cookies', 'pending'])
+  data() {
+    return {
+      activeTabs: ['intro']
+    }
+  },
+  methods: {
+    updateActiveTabs(item) {
+      console.log(item) //eslint-disable-line
+      switch (item) {
+        case 'intro':
+          this.activeTabs = ['intro']
+          break
+        case 'explore':
+          this.activeTabs = ['intro', 'explore']
+          break
+        case 'about':
+          this.activeTabs = ['intro', 'about', 'explore']
+          break
+      }
+    }
   }
 }
 </script>
@@ -41,10 +56,7 @@ export default {
   min-height: 100vh;
   margin: 0 auto;
   background: $background-white;
-
-  display: grid;
-  grid-template-columns: [graph-start] repeat(4, 1fr) [graph-end side-bar-start] 1fr [side-bar-end];
-  grid-template-rows: 1fr;
+  overflow: hidden;
 
   .graph {
     grid-column: graph-start / graph-end;
@@ -70,26 +82,6 @@ export default {
       font-size: 1.5rem;
       margin: 0;
       flex-grow: 1;
-    }
-  }
-
-  .loading {
-    position: fixed;
-    display: block;
-    left: 50%;
-    top: 50%;
-    right: 50%;
-    bottom: 50%;
-    transition: all 0.2s;
-    opacity: 0;
-    background: rgba($black-indigo, 0.2);
-
-    &.pending {
-      left: 0;
-      bottom: 0;
-      right: 0;
-      top: 0;
-      opacity: 1;
     }
   }
 }

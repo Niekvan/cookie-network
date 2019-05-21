@@ -30,6 +30,8 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
     }
   })
 
+  const pattern = new RegExp(/^(.+)?(\..+){2}$/)
+
   data.map(item => {
     if (item.latitude && item.longtitude) {
       item.location = {
@@ -40,8 +42,40 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
     if (item.country === null) {
       item.country = 'undefined'
     }
+
+    item.subDomain = pattern.test(item.sub_domain)
+      ? item.sub_domain
+      : `.${item.sub_domain}`
+
     return item
   })
 
+  const subDomains = data
+    .map(item => item.subDomain)
+    .filter((item, index, array) => array.indexOf(item) === index)
+
+  const domains = data
+    .map(item => item.domain)
+    .filter((item, index, array) => array.indexOf(item) === index)
+
+  const companies = data
+    .map(item => item.company)
+    .filter((item, index, array) => array.indexOf(item) === index)
+
+  const websites = data
+    .map(item => item.website)
+    .filter((item, index, array) => array.indexOf(item) === index)
+
+  const uniques = {
+    connected: websites,
+    companies,
+    domains,
+    subDomains,
+    cookies: [],
+    visited: websites
+    // source
+  }
+
   commit(types.SET_COOKIES, data)
+  commit(types.SET_UNIQUES, uniques)
 }

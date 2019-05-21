@@ -1,14 +1,13 @@
 @font-face {
   font-family: 'SchulBuchNord';
-  src: url('~assets//fonts/Schoolboek-Regular.woff');
+  src: url('~assets//fonts/SchulbuchNordW05-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'SchulbuchNord';
-  src: url('~assets/fonts/SchulbuchNord-Fett.woff2') format('woff2'),
-    url('~assets/fonts/SchulbuchNord-Fett.woff') format('woff');
+  src: url('~assets/fonts/SchulbuchNordW05-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
 }
@@ -23,4 +22,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: $primary;
+}
+
+::selection {
+  background: $black-indigo;
+  color: $cobalt-green;
+}
+
+p {
+  margin-bottom: 1em;
 }

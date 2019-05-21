@@ -5,16 +5,16 @@
         v-for="(layer, key) in layers"
         :key="key"
         :class="key"
-        :style="{ opacity: active.includes(key) ? 0.9 : 0.2 }"
+        :style="{ opacity: active.includes(key) ? 1 : 1 }"
         class="nav__item"
       >
         <div class="nav__content">
           <h2 class="nav__title">
             {{ key }}
           </h2>
-          <p class="nav__text">
+          <!-- <p class="nav__text">
             {{ layer.text }}
-          </p>
+          </p> -->
         </div>
       </li>
     </ul>
@@ -82,24 +82,24 @@ export default {
     }
 
     &.connected {
-      background: $color-connected;
+      background: $grey;
       color: $color-text-inverse;
       z-index: 6;
     }
 
     &.companies {
-      background: $color-company;
+      background: $blue;
       z-index: 5;
     }
 
     &.domains {
-      background: $color-domain;
+      background: $pink;
       color: $color-text-inverse;
       z-index: 4;
     }
 
     &.subdomains {
-      background: $color-subdomain;
+      background: $green;
       z-index: 3;
     }
 
@@ -110,7 +110,7 @@ export default {
     }
 
     &.visited {
-      background: $color-visited;
+      background: $grey;
       color: $color-text-inverse;
       z-index: 1;
     }
@@ -133,13 +133,21 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     padding: 1rem 2rem;
     opacity: 0;
     transition: opacity 0.2s 0s;
   }
 
   &__title {
-    display: inline-block;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: capitalize;
+    font-weight: normal;
   }
 
   &__text {

@@ -5,23 +5,33 @@
       :transform="`translate(${margins.left}, ${margins.top})`"
     >
       <g
-        v-for="(layer, key, index) in uniques"
-        :key="key"
+        v-for="(company, index) in lines"
+        :key="`${company.company}-lines`"
+        class="lines"
+        :class="[company.company, `lines--${index + 1}`]"
+      >
+        <connection-line
+          v-for="line in company.values"
+          :key="line.filter"
+          :data="line"
+          class="line"
+          :class="[line.filter, line.type]"
+        />
+      </g>
+      <g
+        v-for="layer in nodes"
+        :key="layer.key"
         class="layer"
-        :class="key"
+        :class="layer.key"
       >
         <node
-          v-for="(node, nodeIndex) in layer"
-          :key="node"
+          v-for="node in layer.values"
+          :key="node.value"
+          :ref="`${node.value}-${layer.key}`"
           :node="node"
-          :index="nodeIndex"
-          :length="layer.length"
-          :level="index"
-          :levels="uniques.length"
-          :screen="{ width, height }"
-          :active="checkActive(node, key)"
-          :style="opacity(node, key)"
-          @click.native="handleClick(node, key)"
+          :active="checkActive(node.value, layer.key)"
+          :style="opacity(node.value, layer.key)"
+          @click.native="handleClick(node.value, layer.key)"
         />
       </g>
     </g>
@@ -29,11 +39,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import Node from './graph/Node'
+import Line from './graph/Line'
 export default {
   components: {
-    Node
+    Node,
+    connectionLine: Line
   },
   props: {
     data: {
@@ -50,45 +62,27 @@ export default {
       margins: {
         left: 50,
         top: 50,
-        right: 100,
+        right: 150,
         bottom: 50
       },
       connections: null,
-      active: null
+      lines: null,
+      active: null,
+      raw: null
     }
   },
   computed: {
-    uniques() {
-      // const source = [this.ID]
-
-      // const cookies = this.data.map(item => item.cookie)
-
-      const subDomains = this.data
-        .map(item => item.subDomain)
-        .filter((item, index, array) => array.indexOf(item) === index)
-
-      const domains = this.data
-        .map(item => item.domain)
-        .filter((item, index, array) => array.indexOf(item) === index)
-
-      const companies = this.data
-        .map(item => item.company)
-        .filter((item, index, array) => array.indexOf(item) === index)
-
-      const websites = this.data
-        .map(item => item.website)
-        .filter((item, index, array) => array.indexOf(item) === index)
-
-      return {
-        connected: websites,
-        companies,
-        domains,
-        subDomains,
-        visited: websites
-        // cookies,
-        // source
-      }
-    }
+    nodes() {
+      return Object.keys(this.uniques).map((key, index, array) => {
+        const item = this.uniques[key]
+        const layers = array.length
+        return {
+          values: this.calcPosition(item, index, layers, key),
+          key
+        }
+      })
+    },
+    ...mapState(['uniques'])
   },
   mounted() {
     this.handleResize()
@@ -98,6 +92,18 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    calcPosition(data, layer, layers, key) {
+      return data.map((item, index, array) => {
+        const length = array.length
+        const x = (this.width / length) * index
+        const y = (this.height / layers) * layer
+        return {
+          value: item,
+          x,
+          y
+        }
+      })
+    },
     checkActive(node, key) {
       if (this.connections) {
         return this.connections[key].includes(node)
@@ -124,6 +130,7 @@ export default {
       if (this.active === node) {
         this.active = null
         this.connections = null
+        this.lines = null
         return
       }
       this.setPending(true)
@@ -151,26 +158,82 @@ export default {
 
       let visited = null
 
-      if (type === 'visited' || type === 'connected') {
+      if (type === 'company') {
+        visited = []
+      } else {
         visited = data
           .map(item => item.visited)
           .filter((item, index, array) => array.indexOf(item) === index)
-      } else {
-        visited = []
       }
 
-      const connections = connected.map(item => item.connected)
+      const connectedWebsites = connected.map(item => item.connected)
+
+      const lines = []
+
+      companies.forEach(company => {
+        const filtered = data.filter(item => item.company === company)
+        const cc = connected
+          .filter(item => item.company === company)
+          .map(item => {
+            if (item.connected !== 'undefined') {
+              return {
+                filter: `${item.company}-${item.connected}`,
+                source: this.$refs[`${item.company}-companies`],
+                target: this.$refs[`${item.connected}-connected`],
+                type: 'cc'
+              }
+            } else {
+              return {
+                filter: 'nothing'
+              }
+            }
+          })
+        const cd = filtered.map(item => {
+          return {
+            filter: `${item.company}-${item.domain}`,
+            target: this.$refs[`${item.company}-companies`],
+            source: this.$refs[`${item.domain}-domains`],
+            type: 'cd'
+          }
+        })
+        const ds = filtered.map(item => {
+          return {
+            filter: `${item.domain}-${item.subDomain}`,
+            target: this.$refs[`${item.domain}-domains`],
+            source: this.$refs[`${item.subDomain}-subDomains`],
+            type: 'ds'
+          }
+        })
+        const sv = filtered.map(item => {
+          return {
+            filter: `${item.subDomain}-${item.visited}`,
+            target: this.$refs[`${item.subDomain}-subDomains`],
+            source: this.$refs[`${item.visited}-visited`],
+            type: 'sv'
+          }
+        })
+        const values = [...cd, ...ds, ...sv, ...cc].filter(
+          (item, index, array) =>
+            array.map(item => item.filter).indexOf(item.filter) === index
+        )
+        lines.push({
+          values,
+          company
+        })
+      })
 
       this.setPending(false)
 
       this.connections = {
-        connected: connections,
+        connected: connectedWebsites,
         companies,
         domains,
         subDomains,
         cookies,
         visited
       }
+      this.lines = lines
+      this.raw = { data, connected }
     },
     ...mapActions(['setPending'])
   }
@@ -183,27 +246,49 @@ export default {
   height: 100%;
   width: 100%;
 }
-.connected {
-  fill: $color-connected;
+.layer {
+  fill: $primary;
+  // &.connected {
+  //   fill: $color-connected;
+  // }
+
+  // &.companies {
+  //   fill: $color-company;
+  // }
+
+  // &.domains {
+  //   fill: $color-domain;
+  // }
+
+  // &.subDomains {
+  //   fill: $color-subdomain;
+  // }
+
+  // &.cookies {
+  //   fill: $color-cookie;
+  // }
+
+  // &.visited {
+  //   fill: $color-visited;
+  // }
 }
 
-.companies {
-  fill: $color-company;
-}
+.lines {
+  stroke-width: 3px;
+  // opacity: 0.5;
 
-.domains {
-  fill: $color-domain;
-}
+  &--1 {
+    stroke: $blue;
+  }
+  &--2 {
+    stroke: $yellow;
+  }
+  &--3 {
+    stroke: $orange;
+  }
 
-.subDomains {
-  fill: $color-subdomain;
-}
-
-.cookies {
-  fill: $color-cookie;
-}
-
-.visited {
-  fill: $color-visited;
+  &--4 {
+    stroke: $green;
+  }
 }
 </style>

@@ -9,5 +9,8 @@ export default {
   },
   [types.SET_COOKIES](state, payload) {
     state.cookies = payload
+  },
+  [types.SET_UNIQUES](state, payload) {
+    state.uniques = payload
   }
 }

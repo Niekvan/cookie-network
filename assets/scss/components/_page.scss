@@ -1,0 +1,19 @@
+.page {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: calc(100% - 45px);
+  transform: translateX(calc(100% - 90px));
+  transition: transform 0.5s;
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  overflow-y: auto;
+
+  &.active {
+    transform: translateX(0);
+  }
+
+  &__content {
+    height: 100%;
+  }
+}

@@ -8,6 +8,32 @@
  $white: #fafafa;
  $background-white: #f4f7f6;
 
+ $yellow-dark: #f0d229;
+ $yellow: #F5E170;
+ $yellow-light: #f7e688;
+
+ $blue-dark: #008cb3;
+ $blue: #00B3E4;
+ $blue-light: #1aceff;
+
+ $orange-dark: #e59002;
+ $orange: #FEA002;
+ $orange-light: #feaa1b;
+
+ $grey-light: #e5e5e5;
+ $grey: #dfdfdf;
+ $grey-dark: #c9c9c9;
+
+ $pink-dark: #e96299;
+ $pink: #F5B7D0;
+ $pink-light: #f6bcd3;
+
+
+
+ $green-dark: #007880;
+ $green: #00B6C1;
+ $green-light: #1abdc7;
+
  $color-connected: $black-indigo;
  $color-company: $olive-ocher;
  $color-domain: $violet;
@@ -19,3 +45,10 @@
 
  $primary: $black-indigo;
  $highlight: $violet;
+
+ /*
+ ** SPACING
+ */
+
+$grid-spacing-side: 7.5rem;
+$grid-spacing-top: 1rem;
