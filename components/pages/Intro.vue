@@ -5,6 +5,9 @@
       <div class="menu">
         <Menu />
       </div>
+      <div class="child">
+        <nuxt-child />
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-  background: $yellow;
+  background: $grey-light;
   left: 0;
 
   &__content {
@@ -34,6 +37,10 @@ export default {
     .menu {
       grid-column: 2 / 4;
       align-self: center;
+    }
+
+    .child {
+      grid-column: 4 / 7;
     }
   }
 }

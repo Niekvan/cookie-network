@@ -8,20 +8,23 @@
         :style="{ opacity: active.includes(key) ? 1 : 1 }"
         class="nav__item"
       >
-        <div class="nav__content">
-          <h2 class="nav__title">
-            {{ key }}
-          </h2>
-          <!-- <p class="nav__text">
-            {{ layer.text }}
-          </p> -->
-        </div>
+        <nuxt-link :to="`/${key}`" class="link">
+          <div class="nav__content">
+            <h2 class="nav__title header header--2">
+              {{ key }}
+            </h2>
+            <!-- <p class="nav__text">
+              {{ layer.text }}
+            </p> -->
+          </div>
+        </nuxt-link>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -53,6 +56,9 @@ export default {
       },
       active: ['connected', 'companies', 'domains', 'subdomains', 'visited']
     }
+  },
+  computed: {
+    ...mapState(['uniques'])
   }
 }
 </script>
@@ -81,8 +87,12 @@ export default {
       margin-top: -50%;
     }
 
+    .link {
+      color: inherit;
+    }
+
     &.connected {
-      background: $grey;
+      background: $yellow;
       color: $color-text-inverse;
       z-index: 6;
     }
@@ -110,7 +120,7 @@ export default {
     }
 
     &.visited {
-      background: $grey;
+      background: $yellow;
       color: $color-text-inverse;
       z-index: 1;
     }

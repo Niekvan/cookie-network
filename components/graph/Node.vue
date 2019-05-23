@@ -9,7 +9,7 @@
     <text
       class="node__text"
       :class="{ active: active }"
-      transform="rotate(45, 0, 9)"
+      transform="rotate(-45, 0, -9) translate(-20, -5)"
       y="9"
     >
       {{ node.value.replace(/http(s)?:\/\/(www.)?/, '') }}
@@ -75,6 +75,8 @@ export default {
 
   &__text {
     opacity: 0;
+    text-anchor: end;
+    font-size: 1.2rem;
 
     &.active {
       opacity: 1;

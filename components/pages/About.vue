@@ -3,7 +3,7 @@
     <navbar title="The cookie network" />
     <div class="page__content">
       <div class="page__content--title">
-        <p class="subtitle">
+        <p class="subtitle header header--1">
           The cookie network is an attempt to open up the opaque and closed
           infrastructure that enables companies to track us, using the cookie
           technology. This project is not an attack at the technology itself nor
@@ -62,7 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-  background: $blue;
+  background: $grey-dark;
   left: 90px;
 
   &__content {
@@ -71,7 +71,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: min-content 1fr;
-    grid-column-gap: 3rem;
+    grid-column-gap: 6.4rem;
 
     &--title {
       grid-column: 1 / -1;
@@ -84,15 +84,6 @@ export default {
         grid-column: 3 / 5;
       }
     }
-  }
-
-  .subtitle {
-    font-size: 2.5rem;
-    font-weight: normal;
-  }
-
-  .body {
-    font-size: 1.5rem;
   }
 }
 </style>

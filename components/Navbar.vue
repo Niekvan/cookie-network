@@ -1,6 +1,6 @@
 <template>
   <div class="bar">
-    <h2 class="bar__title">
+    <h2 class="bar__title header header--2">
       {{ title }}
     </h2>
   </div>
@@ -34,8 +34,6 @@ export default {
     transform: translateX(-50vh) translateX(+23px) translateY(calc(50vh))
       rotate(-90deg);
 
-    font-size: 2rem;
-    font-weight: normal;
     text-transform: uppercase;
   }
 }

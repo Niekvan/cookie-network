@@ -34,6 +34,7 @@
           @click.native="handleClick(node.value, layer.key)"
         />
       </g>
+      <g v-if="active" class="cookies" />
     </g>
   </svg>
 </template>

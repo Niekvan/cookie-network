@@ -55,34 +55,11 @@ export default {
   position: relative;
   min-height: 100vh;
   margin: 0 auto;
-  background: $background-white;
   overflow: hidden;
 
   .graph {
     grid-column: graph-start / graph-end;
     grid-row: 1 / -1;
-  }
-
-  .side-bar {
-    position: relative;
-    grid-column: side-bar-start / side-bar-end;
-    grid-row: 1 / -1;
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-
-    &__title {
-      font-weight: normal;
-      font-size: 3rem;
-      line-height: 1;
-      margin-bottom: 0.5em;
-    }
-
-    &__body {
-      font-size: 1.5rem;
-      margin: 0;
-      flex-grow: 1;
-    }
   }
 }
 </style>
