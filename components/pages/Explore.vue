@@ -36,7 +36,7 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-  background: $grey;
+  background: $pink;
   left: 45px;
   overflow-x: hidden;
 
