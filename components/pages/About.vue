@@ -63,7 +63,8 @@ export default {
 <style lang="scss" scoped>
 .page {
   background: $grey-dark;
-  left: 90px;
+  left: 105px;
+  height: 100vh;
 
   &__content {
     padding: $grid-spacing-top calc(#{$grid-spacing-side} + 45px) 0

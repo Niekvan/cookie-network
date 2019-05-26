@@ -12,5 +12,11 @@ export default {
   },
   [types.SET_UNIQUES](state, payload) {
     state.uniques = payload
+  },
+  [types.SET_CHROME_BROWSER](state, payload) {
+    state.isChrome = payload
+  },
+  [types.SET_INSTALLED](state, payload) {
+    state.extensionInstalled = payload
   }
 }

@@ -19,10 +19,13 @@ export default {
 
 <style lang="scss" scoped>
 .bar {
-  width: 45px;
+  width: 55px;
   height: 100%;
   background: transparent;
   display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   &:hover {
     cursor: pointer;
@@ -31,7 +34,7 @@ export default {
   &__title {
     width: 100vh;
     text-align: right;
-    transform: translateX(-50vh) translateX(+23px) translateY(calc(50vh))
+    transform: translateX(-50vh) translateX(+26px) translateY(calc(50vh))
       rotate(-90deg);
 
     text-transform: uppercase;

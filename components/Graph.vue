@@ -106,7 +106,9 @@ export default {
       })
     },
     checkActive(node, key) {
-      if (this.connections) {
+      if (key === 'visited') {
+        return true
+      } else if (this.connections) {
         return this.connections[key].includes(node)
       }
       return false

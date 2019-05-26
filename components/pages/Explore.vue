@@ -2,8 +2,49 @@
   <div class="page">
     <navbar title="Explore" />
     <div class="page__content">
-      <graph class="graph" :data="formattedCookies" />
-      <div class="loading" :class="{ pending: pending }" />
+      <template v-if="isChrome && extensionInstalled">
+        <graph class="graph" :data="formattedCookies" />
+        <div class="loading" :class="{ pending: pending }" />
+      </template>
+      <template v-else-if="isChrome && !extensionInstalled">
+        <div class="error">
+          <h1 class="header header--1">
+            Please install the extension from the chrome webstore.
+          </h1>
+          <p class="body">
+            The cookie network website requires a plugin in order to show you
+            your data. Please follow
+            <a
+              href="https://www.google.com/chrome/"
+              content="noreferer"
+              class="external-link"
+            >
+              this link
+            </a>
+            and install the plugin from the chrome webstore.
+          </p>
+        </div>
+      </template>
+      <template v-else>
+        <div class="error">
+          <h1 class="header header--1">
+            Please install the Chrome webbrowser.
+          </h1>
+          <p class="body">
+            Unforunately, the cookie network only functions in the Chrome
+            webbrowser for now. Please follow
+            <a
+              href="https://www.google.com/chrome/"
+              content="noreferer"
+              class="external-link"
+            >
+              this link
+            </a>
+            to install the Chrome browser and see which companies are following
+            you.
+          </p>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -29,7 +70,7 @@ export default {
         return item
       })
     },
-    ...mapState(['cookies', 'pending'])
+    ...mapState(['cookies', 'pending', 'isChrome', 'extensionInstalled'])
   }
 }
 </script>
@@ -37,11 +78,19 @@ export default {
 <style lang="scss" scoped>
 .page {
   background: $grey;
-  left: 45px;
-  overflow-x: hidden;
+  left: 55px;
+  overflow: hidden;
 
   &__content {
     padding: $grid-spacing-top $grid-spacing-top;
+
+    .error {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      padding-left: $grid-spacing-side;
+    }
   }
 
   .loading {

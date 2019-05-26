@@ -4,6 +4,14 @@ export const setPending = ({ commit }, payload) => {
   commit(types.SET_PENDING, payload)
 }
 
+export const setChromeBrowser = ({ commit }, payload) => {
+  commit(types.SET_CHROME_BROWSER, payload)
+}
+
+export const setInstalled = ({ commit }, payload) => {
+  commit(types.SET_INSTALLED, payload)
+}
+
 export const nuxtServerInit = async function({ commit, state }, { app }) {
   // console.log('getting cookie') //eslint-disable-line
   const cookie = await app.$cookies.get('map-identifier')
@@ -73,7 +81,7 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
     companies,
     domains,
     subDomains,
-    cookies: [],
+    // cookies: [],
     visited: websites
     // source
   }

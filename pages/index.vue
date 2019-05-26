@@ -20,6 +20,8 @@ import Intro from '~/components/pages/Intro.vue'
 import About from '~/components/pages/About.vue'
 import Explore from '~/components/pages/Explore.vue'
 
+import { mapActions, mapState } from 'vuex'
+
 export default {
   components: {
     Intro,
@@ -31,9 +33,29 @@ export default {
       activeTabs: ['intro']
     }
   },
+  computed: {
+    ...mapState(['extensionId'])
+  },
+  mounted() {
+    const isChrome =
+      !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)
+    if (isChrome) {
+      window.chrome.runtime.sendMessage(
+        this.extensionId,
+        'version',
+        response => {
+          if (!response) {
+            this.setInstalled(false)
+            return true
+          }
+          this.setInstalled(true)
+        }
+      )
+    }
+    this.setChromeBrowser(isChrome)
+  },
   methods: {
     updateActiveTabs(item) {
-      console.log(item) //eslint-disable-line
       switch (item) {
         case 'intro':
           this.activeTabs = ['intro']
@@ -45,7 +67,8 @@ export default {
           this.activeTabs = ['intro', 'about', 'explore']
           break
       }
-    }
+    },
+    ...mapActions(['setChromeBrowser', 'setInstalled'])
   }
 }
 </script>
