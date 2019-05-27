@@ -4,7 +4,9 @@ require('dotenv').config()
 
 export default {
   mode: 'universal',
-
+  server: {
+    port: process.env.PORT
+  },
   /*
    ** Headers of the page
    */
