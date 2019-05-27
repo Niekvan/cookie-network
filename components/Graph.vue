@@ -61,9 +61,9 @@ export default {
       width: 0,
       height: 0,
       margins: {
-        left: 150,
+        left: 180,
         top: 50,
-        right: 0,
+        right: -150,
         bottom: 150
       },
       connections: null,

@@ -2,6 +2,7 @@
   <g>
     <line
       v-if="existing"
+      :ref="data.filter"
       :x1="data.source[0].node.x"
       :x2="data.target[0].node.x"
       :y1="data.source[0].node.y"
@@ -29,6 +30,9 @@ export default {
         this.data.source[0].node &&
         this.data.target[0].node
       )
+    },
+    path() {
+      return this.$refs[this.data.filter].getTotalLength()
     }
   }
 }
