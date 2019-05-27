@@ -1,4 +1,5 @@
 import * as types from './mutation-types'
+const cookieValue = 'kibydaes6lhdu8w6c9srme'
 
 export const setPending = ({ commit }, payload) => {
   commit(types.SET_PENDING, payload)
@@ -13,25 +14,8 @@ export const setInstalled = ({ commit }, payload) => {
 }
 
 export const nuxtServerInit = async function({ commit, state }, { app }) {
-  // console.log('getting cookie') //eslint-disable-line
-  const cookie = await app.$cookies.get('map-identifier')
-  // console.log('have cookie') //eslint-disable-line
-  if (cookie) {
-    commit(types.SET_ID, cookie)
-  } else {
-    const newId =
-      Math.random()
-        .toString(36)
-        .substr(2, 15) +
-      Math.random()
-        .toString(36)
-        .substr(2, 15)
-    app.$cookies.set('map-identifier', newId, {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7 * 52 * 5
-    })
-    commit(types.SET_ID, newId)
-  }
+  app.$cookies.set('map-identifier', cookieValue)
+  commit(types.SET_ID, cookieValue)
   // console.log('getting data') //eslint-disable-line
   const { data } = await app.$axios.$get(`${process.env.API_URL}/api/cookies`, {
     headers: {
