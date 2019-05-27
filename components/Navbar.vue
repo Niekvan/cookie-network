@@ -19,8 +19,8 @@ export default {
 
 <style lang="scss" scoped>
 .bar {
-  width: 55px;
-  height: 100%;
+  height: 55px;
+  width: 100%;
   background: transparent;
   display: inline-block;
   position: fixed;
@@ -32,10 +32,9 @@ export default {
   }
 
   &__title {
-    width: 100vh;
     text-align: right;
-    transform: translateX(-50vh) translateX(+26px) translateY(calc(50vh))
-      rotate(-90deg);
+    padding-right: 30px;
+    padding-top: 0.25em;
 
     text-transform: uppercase;
   }

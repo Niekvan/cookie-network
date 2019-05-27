@@ -77,12 +77,12 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
     .filter((item, index, array) => array.indexOf(item) === index)
 
   const uniques = {
-    connected: websites,
-    companies,
-    domains,
+    visited: websites,
     subDomains,
+    domains,
+    companies,
+    connected: websites
     // cookies: [],
-    visited: websites
     // source
   }
   // console.log('comitting') //eslint-disable-line

@@ -27,6 +27,7 @@ export default {
 .page {
   background: $grey-light;
   left: 0;
+  bottom: 100%;
 
   &__content {
     padding: 2rem calc(2rem + 45px) 2rem 2rem;

@@ -9,8 +9,8 @@
     <text
       class="node__text"
       :class="{ active: active }"
-      transform="rotate(-45, 0, -9) translate(-20, -5)"
-      y="9"
+      y="3"
+      x="-10"
     >
       {{ node.value.replace(/http(s)?:\/\/(www.)?/, '') }}
     </text>

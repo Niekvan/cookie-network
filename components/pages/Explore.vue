@@ -78,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 .page {
   background: $grey;
-  left: 55px;
+  top: 55px;
   overflow: hidden;
 
   &__content {

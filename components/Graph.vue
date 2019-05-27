@@ -61,10 +61,10 @@ export default {
       width: 0,
       height: 0,
       margins: {
-        left: 50,
+        left: 150,
         top: 50,
-        right: 150,
-        bottom: 50
+        right: 0,
+        bottom: 150
       },
       connections: null,
       lines: null,
@@ -96,8 +96,8 @@ export default {
     calcPosition(data, layer, layers, key) {
       return data.map((item, index, array) => {
         const length = array.length
-        const x = (this.width / length) * index
-        const y = (this.height / layers) * layer
+        const y = (this.height / length) * index
+        const x = (this.width / layers) * layer
         return {
           value: item,
           x,
