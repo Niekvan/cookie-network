@@ -13,9 +13,21 @@
             <h2 class="nav__title header header--2">
               {{ key }}
             </h2>
-            <!-- <p class="nav__text">
-              {{ layer.text }}
-            </p> -->
+            <svg class="nav__svg" :viewBox="viewbox">
+              <g
+                v-for="row in layer.items"
+                :key="`row-${row}`"
+                class="circles__row"
+              >
+                <g
+                  v-for="col in layer.items"
+                  :key="`col-${col}`"
+                  class="circle"
+                >
+                  <circle r="5" />
+                </g>
+              </g>
+            </svg>
           </div>
         </nuxt-link>
       </li>
@@ -31,30 +43,37 @@ export default {
       layers: {
         connected: {
           text:
-            'This layer shows all the websites you have visited who are connected to one of the highlighted companies'
+            'This layer shows all the websites you have visited who are connected to one of the highlighted companies',
+          items: 5
         },
         companies: {
           text:
-            'This layers shows all the companies with access to the selected website you have visited before'
+            'This layers shows all the companies with access to the selected website you have visited before',
+          items: 3
         },
         domains: {
           text:
-            'This layer shows all the domains that are used to collect information from you'
+            'This layer shows all the domains that are used to collect information from you',
+          items: 7
         },
         subdomains: {
           text:
-            'This layer shows all the different logistic centers through which the information is send further'
+            'This layer shows all the different logistic centers through which the information is send further',
+          items: 9
         },
         cookies: {
           text:
-            'This layer shows all the cookies connected to the selected website'
+            'This layer shows all the cookies connected to the selected website',
+          items: 15
         },
         visited: {
           text:
-            'This layer shows all the websites you have visited since installing the plugin'
+            'This layer shows all the websites you have visited since installing the plugin',
+          items: 5
         }
       },
-      active: ['connected', 'companies', 'domains', 'subdomains', 'visited']
+      active: ['connected', 'companies', 'domains', 'subdomains', 'visited'],
+      viewbox: [0, 0, 200, 200]
     }
   },
   computed: {
@@ -145,7 +164,6 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 1rem 2rem;
     opacity: 0;
     transition: opacity 0.2s 0s;
   }
@@ -163,6 +181,12 @@ export default {
   &__text {
     display: inline-block;
     margin: 0;
+  }
+
+  &__svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
