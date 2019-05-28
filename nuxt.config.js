@@ -7,6 +7,9 @@ export default {
   server: {
     port: process.env.PORT
   },
+  env: {
+    WS_URL: process.env.WS_URL
+  },
 
   /*
    ** Headers of the page
