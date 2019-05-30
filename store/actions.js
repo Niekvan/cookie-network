@@ -60,12 +60,33 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
     .map(item => item.website)
     .filter((item, index, array) => array.indexOf(item) === index)
 
+  const visitedTitle = 'Visited websites'
+  const subDomainsTitle = 'Sub domains'
+  const domainsTitle = 'Domains'
+  const companiesTitle = 'Companies'
+  const connectedTitle = 'Accessible websites'
+
   const uniques = {
-    visited: websites,
-    subDomains,
-    domains,
-    companies,
-    connected: websites
+    visited: {
+      title: visitedTitle,
+      values: websites
+    },
+    subDomains: {
+      title: subDomainsTitle,
+      values: subDomains
+    },
+    domains: {
+      title: domainsTitle,
+      values: domains
+    },
+    companies: {
+      title: companiesTitle,
+      values: companies
+    },
+    connected: {
+      title: connectedTitle,
+      values: websites
+    }
     // cookies: [],
     // source
   }

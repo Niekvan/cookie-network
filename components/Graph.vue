@@ -24,6 +24,18 @@
         class="layer"
         :class="layer.key"
       >
+        <g class="layer__title">
+          <text :x="layer.x - 15" y="-2.5" class="layer__title--text">
+            {{ layer.text }}
+          </text>
+          <rect
+            :x="layer.x - 7.5"
+            y="-15"
+            width="15"
+            height="15"
+            class="layer__title--rect"
+          />
+        </g>
         <node
           v-for="node in layer.values"
           :key="node.value"
@@ -54,6 +66,10 @@ export default {
       default() {
         return []
       }
+    },
+    activeIndex: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -77,13 +93,22 @@ export default {
       return Object.keys(this.uniques).map((key, index, array) => {
         const item = this.uniques[key]
         const layers = array.length
+        const x = (this.width / layers) * index
         return {
-          values: this.calcPosition(item, index, layers, key),
-          key
+          values: this.calcPosition(item.values, index, layers, key),
+          key,
+          text: item.title,
+          x
         }
       })
     },
     ...mapState(['uniques'])
+  },
+  watch: {
+    activeIndex: function(newIndex) {
+      console.log(newIndex) //eslint-disable-line
+      this.handleClick(this.uniques.visited.values[newIndex], 'visited')
+    }
   },
   mounted() {
     this.handleResize()
@@ -251,29 +276,22 @@ export default {
 }
 .layer {
   fill: $primary;
-  // &.connected {
-  //   fill: $color-connected;
-  // }
 
-  // &.companies {
-  //   fill: $color-company;
-  // }
+  &__title {
+    transform: translateY(-3em);
+    position: relative;
 
-  // &.domains {
-  //   fill: $color-domain;
-  // }
+    &--text {
+      text-anchor: end;
+      font-size: 2rem;
+    }
 
-  // &.subDomains {
-  //   fill: $color-subdomain;
-  // }
-
-  // &.cookies {
-  //   fill: $color-cookie;
-  // }
-
-  // &.visited {
-  //   fill: $color-visited;
-  // }
+    &--rect {
+      fill: none;
+      stroke: $primary;
+      stroke-width: 2px;
+    }
+  }
 }
 
 .lines {

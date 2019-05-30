@@ -3,7 +3,11 @@
     <navbar title="Explore" />
     <div class="page__content">
       <template v-if="isChrome && extensionInstalled">
-        <graph class="graph" :data="formattedCookies" />
+        <graph
+          class="graph"
+          :data="formattedCookies"
+          :active-index="websiteIndex"
+        />
         <div class="loading" :class="{ pending: pending }" />
       </template>
       <template v-else-if="isChrome && !extensionInstalled">
@@ -52,6 +56,7 @@
 <script>
 import Navbar from '~/components/Navbar.vue'
 import Graph from '~/components/Graph.vue'
+import ws from '~/mixins/ws'
 
 import { mapState } from 'vuex'
 
@@ -60,6 +65,7 @@ export default {
     Navbar,
     Graph
   },
+  mixins: [ws],
   computed: {
     formattedCookies() {
       const pattern = new RegExp(/^(.+)?(\..+){2}$/)
@@ -70,7 +76,13 @@ export default {
         return item
       })
     },
-    ...mapState(['cookies', 'pending', 'isChrome', 'extensionInstalled'])
+    ...mapState([
+      'cookies',
+      'pending',
+      'isChrome',
+      'extensionInstalled',
+      'uniques'
+    ])
   }
 }
 </script>

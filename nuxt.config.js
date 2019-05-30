@@ -90,6 +90,23 @@ export default {
           exclude: /(node_modules)/
         })
       }
+      config.module.rules.unshift({
+        test: /\.(png|jpe?g|gif)$/,
+        use: {
+          loader: 'responsive-loader',
+          options: {
+            placeholder: true,
+            quality: 85,
+            placeholderSize: 30,
+            name: 'img/[name].[hash:hex:7].[width].[ext]'
+          }
+        }
+      })
+      config.module.rules.forEach(value => {
+        if (String(value.test) === String(/\.(png|jpe?g|gif|svg|webp)$/)) {
+          value.test = /\.(svg|webp)$/
+        }
+      })
     }
   }
 }
