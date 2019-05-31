@@ -1,0 +1,2 @@
+*.js text eol=cr
+*.vue ext eol=cr
