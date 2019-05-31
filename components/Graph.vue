@@ -106,7 +106,6 @@ export default {
   },
   watch: {
     activeIndex: function(newIndex) {
-      console.log(newIndex) //eslint-disable-line
       this.handleClick(this.uniques.visited.values[newIndex], 'visited')
     }
   },

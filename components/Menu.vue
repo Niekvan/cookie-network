@@ -51,7 +51,8 @@ export default {
       layers: {
         connected: {
           text:
-            'This layer shows all the websites you have visited who are connected to one of the highlighted companies'
+            'This layer shows all the websites you have visited who are connected to one of the highlighted companies',
+          items: 5
         },
         companies: {
           text:
@@ -60,22 +61,27 @@ export default {
         },
         domains: {
           text:
-            'This layer shows all the domains that are used to collect information from you'
+            'This layer shows all the domains that are used to collect information from you',
+          items: 6
         },
         subdomains: {
           text:
-            'This layer shows all the different logistic centers through which the information is send further'
+            'This layer shows all the different logistic centers through which the information is send further',
+          items: 9
         },
         cookies: {
           text:
-            'This layer shows all the cookies connected to the selected website'
+            'This layer shows all the cookies connected to the selected website',
+          items: 12
         },
         visited: {
           text:
-            'This layer shows all the websites you have visited since installing the plugin'
+            'This layer shows all the websites you have visited since installing the plugin',
+          items: 5
         }
       },
-      active: ['connected', 'companies', 'domains', 'subdomains', 'visited']
+      active: ['connected', 'companies', 'domains', 'subdomains', 'visited'],
+      viewbox: [0, 0, 200, 200]
     }
   },
   computed: {
