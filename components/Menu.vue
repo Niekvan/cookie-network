@@ -24,7 +24,15 @@
                   :key="`col-${col}`"
                   class="circle"
                 >
-                  <circle r="5" />
+                  <circle
+                    :cy="
+                      ((viewbox[3] - viewbox[1]) / layer.items) * (row - 0.5)
+                    "
+                    :cx="
+                      ((viewbox[2] - viewbox[0]) / layer.items) * (col - 0.5)
+                    "
+                    r="5"
+                  />
                 </g>
               </g>
             </svg>
@@ -49,7 +57,7 @@ export default {
         companies: {
           text:
             'This layers shows all the companies with access to the selected website you have visited before',
-          items: 3
+          items: 4
         },
         domains: {
           text:
@@ -78,6 +86,9 @@ export default {
   },
   computed: {
     ...mapState(['uniques'])
+  },
+  mounted() {
+    // console.log((this.viewbox[3] - this.viewbox[1]) / this.layers[0].items) //eslint-disable-line
   }
 }
 </script>
@@ -101,6 +112,7 @@ export default {
     perspective: 400px;
     transform: rotatex(70deg) rotateZ(30deg);
     transition: all 1s 0.2s;
+    // background: $grey-light;
 
     &:not(:first-child) {
       margin-top: -50%;
@@ -111,49 +123,57 @@ export default {
     }
 
     &.connected {
-      background: $yellow;
-      color: $color-text-inverse;
+      // background: $yellow;
+      // color: $color-text-inverse;
       z-index: 6;
     }
 
     &.companies {
-      background: $blue;
+      // background: $blue;
       z-index: 5;
     }
 
     &.domains {
-      background: $pink;
-      color: $color-text-inverse;
+      // background: $pink;
+      // color: $color-text-inverse;
       z-index: 4;
     }
 
     &.subdomains {
-      background: $green;
+      // background: $green;
       z-index: 3;
     }
 
     &.cookies {
-      background: $color-cookie;
-      color: $color-text-inverse;
+      // background: $color-cookie;
+      // color: $color-text-inverse;
       z-index: 2;
     }
 
     &.visited {
-      background: $yellow;
-      color: $color-text-inverse;
+      // background: $yellow;
+      // color: $color-text-inverse;
       z-index: 1;
     }
 
     &:hover {
-      transform: rotatex(0deg) rotateZ(0deg) translateZ(100px);
-      width: 100%;
-      padding-bottom: 100%;
+      transform: rotatex(0deg) rotateZ(0deg) translateZ(200px);
+      // width: 70%;
+      // padding-bottom: 100%;
+      background: $grey-light;
+      margin-bottom: 5%;
       z-index: 10;
       transition: all 1s;
 
-      .nav__content {
-        opacity: 1;
-        transition: opacity 0.2s 1s;
+      &:not(:first-child) {
+        margin-top: -20%;
+      }
+
+      .nav {
+        &__title {
+          opacity: 1;
+          transition: opacity 0.2s 1s;
+        }
       }
     }
   }
@@ -164,18 +184,20 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    opacity: 0;
-    transition: opacity 0.2s 0s;
   }
 
   &__title {
     text-align: center;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    transform: translate(-100%, -50%);
     text-transform: capitalize;
     font-weight: normal;
+    padding: 0.25em 0.5em;
+    background: $grey-light;
+    opacity: 0;
+    transition: opacity 0.2s 0s;
   }
 
   &__text {
@@ -187,6 +209,7 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
+    fill: $green;
   }
 }
 </style>
