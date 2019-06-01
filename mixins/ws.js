@@ -31,10 +31,14 @@ export default {
       }
       this.ws.onclose = event => {
         this.openConnection = false
+        console.log('reconnecting') //eslint-disable-line
+        setTimeout(() => {
+          this.startWs()
+        }, 300)
       }
       this.ws.onmessage = event => {
         this.wsData = event.data
-        if (Number(event.data)) {
+        if (Number(event.data) && event.data !== 'hi') {
           this.websiteIndex++
         } else {
           this.websiteIndex--
