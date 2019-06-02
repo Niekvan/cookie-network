@@ -5,7 +5,11 @@ export default {
       ws: null,
       openConnection: false,
       wsData: null,
-      websiteIndex: null
+      websiteIndex: null,
+      interval: null,
+      firstMessage: null,
+      timeOut: false,
+      sequence: false
     }
   },
   computed: {
@@ -32,16 +36,41 @@ export default {
       this.ws.onclose = event => {
         this.openConnection = false
         console.log('reconnecting') //eslint-disable-line
-        setTimeout(() => {
+        this.interval = setTimeout(() => {
           this.startWs()
         }, 300)
       }
       this.ws.onmessage = event => {
         this.wsData = event.data
-        if (Number(event.data) && event.data !== 'hi') {
-          this.websiteIndex++
-        } else {
-          this.websiteIndex--
+        switch (event.data) {
+          case 'hi':
+            this.firstMessage = true
+            break
+          case 'timeout':
+            this.timeOut = true
+            break
+          case 'start':
+            this.timeOut = false
+            this.sequence = true
+            break
+          default:
+            if (!this.sequence) {
+              if (Number(event.data)) {
+                if (
+                  this.websiteIndex <
+                  this.uniques.visited.values.length - 1
+                ) {
+                  this.websiteIndex++
+                } else {
+                  this.websiteIndex = 0
+                }
+              } else if (this.websiteIndex > 0) {
+                this.websiteIndex--
+              } else {
+                this.websiteIndex = this.uniques.visited.values.length - 1
+              }
+            }
+            break
         }
       }
     }

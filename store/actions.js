@@ -46,7 +46,12 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
   // console.log('map uniques') //eslint-disable-line
   const subDomains = data
     .map(item => item.subDomain)
-    .filter((item, index, array) => array.indexOf(item) === index)
+    .filter(
+      (item, index, array) =>
+        array.indexOf(item) === index &&
+        !item.includes('localhost') &&
+        !item.includes('i-consent.network')
+    )
 
   const domains = data
     .map(item => item.domain)

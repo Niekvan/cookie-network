@@ -45,15 +45,16 @@ export default {
       const x = col < this.cols / 2 ? '1%' : '-66%'
       if (this.active) {
         return {
-          top: `50%`,
           zIndex: 2,
           transform: `translateY(-50%) translateX(${x})`,
           width: '70%',
-          left: `calc(${100 / this.cols}% * ${col})`
+          top: '50%',
+          left: `calc(${100 / this.cols}% * ${col} + ${Math.random() * 3 -
+            1.5}rem)`
         }
       }
       return {
-        top: `calc(1em + 2em * ${row} + ${Math.random() * 5 - 2.5}rem)`,
+        top: `calc(1rem + 3.25rem * ${row} + ${Math.random() * 5 - 2.5}rem)`,
         left: `calc(${100 / this.cols}% * ${col} + ${Math.random() * 3 -
           1.5}rem)`
       }
@@ -71,8 +72,9 @@ export default {
   font-size: 1.5rem;
   position: absolute;
   box-shadow: 2px 0 7px 1px rgba($primary, 0.1);
-  transition: all 0.5s 0.2s;
+  transition: all 1s 0.2s;
   z-index: 1;
+  will-change: transform;
 
   &::before {
     content: '';
@@ -116,6 +118,7 @@ export default {
 
   &.active {
     font-size: 2.5rem;
+    // transition: all 1s;
   }
 }
 </style>
