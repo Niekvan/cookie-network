@@ -1,5 +1,8 @@
 <template>
   <section class="container">
+    <transition name="fade">
+      <timeout v-if="timeOut" version="vertical" />
+    </transition>
     <intro
       :class="{ active: activeTabs.includes('intro') }"
       @click.native="updateActiveTabs('intro')"
@@ -19,6 +22,7 @@
 import Intro from '~/components/pages/Intro.vue'
 import About from '~/components/pages/About.vue'
 import Explore from '~/components/pages/Explore.vue'
+import Timeout from '~/components/Timeout.vue'
 
 import { mapActions, mapState } from 'vuex'
 
@@ -26,15 +30,16 @@ export default {
   components: {
     Intro,
     About,
-    Explore
+    Explore,
+    Timeout
   },
   data() {
     return {
-      activeTabs: ['intro']
+      activeTabs: ['intro', 'explore']
     }
   },
   computed: {
-    ...mapState(['extensionId'])
+    ...mapState(['extensionId', 'timeOut'])
   },
   mounted() {
     const isChrome =

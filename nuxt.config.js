@@ -8,7 +8,8 @@ export default {
     port: process.env.PORT
   },
   env: {
-    WS_URL: process.env.WS_URL
+    WS_URL: process.env.WS_URL,
+    EXTENSION_ID: process.env.EXTENSION_ID
   },
 
   /*

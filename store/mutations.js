@@ -18,5 +18,11 @@ export default {
   },
   [types.SET_INSTALLED](state, payload) {
     state.extensionInstalled = payload
+  },
+  [types.SET_TIMEOUT](state, payload) {
+    state.timeOut = payload
+  },
+  [types.SET_SEQUENCE](state, payload) {
+    state.sequence = payload
   }
 }

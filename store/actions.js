@@ -13,6 +13,14 @@ export const setInstalled = ({ commit }, payload) => {
   commit(types.SET_INSTALLED, payload)
 }
 
+export const setTimeout = ({ commit }, payload) => {
+  commit(types.SET_TIMEOUT, payload)
+}
+
+export const setSequence = ({ commit }, payload) => {
+  commit(types.SET_SEQUENCE, payload)
+}
+
 export const nuxtServerInit = async function({ commit, state }, { app }) {
   app.$cookies.set('map-identifier', cookieValue)
   commit(types.SET_ID, cookieValue)

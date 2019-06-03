@@ -9,7 +9,9 @@
         :active="index === websiteIndex"
       />
     </template>
-    <timeout />
+    <transition name="fade">
+      <timeout v-if="timeOut" version="horizontal" />
+    </transition>
   </div>
 </template>
 
@@ -18,12 +20,18 @@ import ws from '~/mixins/ws'
 
 import Screenshot from '~/components/Screenshot.vue'
 import Timeout from '~/components/Timeout.vue'
+
+import { mapState } from 'vuex'
+
 export default {
   components: {
     Screenshot,
     Timeout
   },
-  mixins: [ws]
+  mixins: [ws],
+  computed: {
+    ...mapState(['timeOut'])
+  }
 }
 </script>
 

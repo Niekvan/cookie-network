@@ -7,13 +7,11 @@ export default {
       wsData: null,
       websiteIndex: null,
       interval: null,
-      firstMessage: null,
-      timeOut: false,
-      sequence: false
+      firstMessage: null
     }
   },
   computed: {
-    ...mapState(['uniques'])
+    ...mapState(['uniques', 'sequence', 'timeOut'])
   },
   created() {
     this.websiteIndex = Math.floor(this.uniques.visited.values.length / 2)
@@ -47,11 +45,12 @@ export default {
             this.firstMessage = true
             break
           case 'timeout':
-            this.timeOut = true
+            this.$store.dispatch('setTimeout', true)
             break
           case 'start':
-            this.timeOut = false
-            this.sequence = true
+            if (this.timeOut) {
+              this.$store.dispatch('setSequence', true)
+            }
             break
           default:
             if (!this.sequence) {
