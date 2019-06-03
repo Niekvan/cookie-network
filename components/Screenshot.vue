@@ -8,7 +8,7 @@
     <div
       class="frame__content"
       :style="{
-        backgroundImage: `url(${require(`~/assets/images/${website.replace(
+        backgroundImage: `url(${require(`~/assets/images/screenshots/${website.replace(
           /https?:\/\//,
           ''
         )}.png`)})`

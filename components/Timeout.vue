@@ -61,7 +61,16 @@
             alt=""
           />
         </div>
-        <div v-if="version === 'vertical'" class="vertical"></div>
+        <div v-if="version === 'vertical'" class="vertical">
+          <img
+            v-for="(image, index) in images"
+            :key="index"
+            :src="image.src"
+            class="news__image"
+            :class="{ active: index <= activeCount }"
+            :style="{ left: image.x, top: image.y }"
+          />
+        </div>
       </div>
       <div v-if="explain" key="explain" class="explain">
         <div v-if="version === 'horizontal'" class="horizontal">
@@ -102,10 +111,28 @@ export default {
       consent: false,
       news: false,
       explain: false,
-      slideTime: 10000
+      slideTime: 10000,
+      activeCount: -1,
+      width: 0,
+      height: 0,
+      leakImages: 39
     }
   },
   computed: {
+    images() {
+      const images = []
+      for (let i = 1; i < 39; i++) {
+        const src = require(`~/assets/images/leaks/${i}.png`)
+        const x = Math.floor(Math.random() * (this.width - src.width + 1))
+        const y = Math.floor(Math.random() * (this.height - src.height + 1))
+        images.push({
+          src,
+          x: `${x}px`,
+          y: `${y}px`
+        })
+      }
+      return images
+    },
     ...mapState(['sequence'])
   },
   watch: {
@@ -121,6 +148,12 @@ export default {
         setTimeout(() => {
           this.consent = false
           this.news = true
+          const imageCount = setInterval(() => {
+            this.activeCount++
+            if (this.activeCount === this.leakImages) {
+              clearInterval(imageCount)
+            }
+          }, 500)
           setTimeout(() => {
             this.news = false
             this.explain = true
@@ -133,6 +166,10 @@ export default {
         }, this.slideTime)
       }
     }
+  },
+  mounted() {
+    this.width = window.innerWidth
+    this.height = window.innerHeight
   }
 }
 </script>
@@ -215,6 +252,15 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+  }
+
+  &__image {
+    position: absolute;
+    display: none;
+
+    &.active {
+      display: block;
     }
   }
 }
