@@ -112,6 +112,7 @@ export default {
   mounted() {
     this.handleResize()
     window.addEventListener('resize', this.handleResize)
+    this.handleClick(this.uniques.visited.values[this.activeIndex], 'visited')
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)

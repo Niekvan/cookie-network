@@ -54,7 +54,7 @@ export default {
         }
       }
       return {
-        top: `calc(1rem + 3.25rem * ${row} + ${Math.random() * 5 - 2.5}rem)`,
+        top: `calc(1.5rem + 4.5rem * ${row} + ${Math.random() * 5 - 2.5}rem)`,
         left: `calc(${100 / this.cols}% * ${col} + ${Math.random() * 3 -
           1.5}rem)`
       }

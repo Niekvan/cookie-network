@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <screenshot
-      v-for="(website, index) in uniques.visited.values"
-      :key="website"
-      :website="website"
-      :index="index"
-      :active="index === websiteIndex"
-    />
+    <template>
+      <screenshot
+        v-for="(website, index) in uniques.visited.values"
+        :key="website"
+        :website="website"
+        :index="index"
+        :active="index === websiteIndex"
+      />
+    </template>
+    <timeout />
   </div>
 </template>
 
@@ -14,9 +17,11 @@
 import ws from '~/mixins/ws'
 
 import Screenshot from '~/components/Screenshot.vue'
+import Timeout from '~/components/Timeout.vue'
 export default {
   components: {
-    Screenshot
+    Screenshot,
+    Timeout
   },
   mixins: [ws]
 }
