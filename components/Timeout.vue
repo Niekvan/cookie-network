@@ -1,98 +1,118 @@
 <template>
   <div ref="background" class="container">
-    <transition-group name="fade" mode="out-in">
-      <div v-if="timeout" key="popup" class="popup">
-        <h1 class="popup__title header">
-          About cookies in this installation
+    <div :class="{ active: timeout }" class="popup">
+      <h1 class="popup__title header">
+        About cookies in this installation
+      </h1>
+      <p class="body popup__content">
+        When you browse on this installation, cookies and other technologies
+        might collect data to enhance your experience and personalize the
+        content and advertising you see. Visit our Privacy Policy (updated
+        03/06/19) and Consent Tool to learn more, and make choices about the
+        data used by us and our partners in the installation. By clicking
+        “Accept” or by continuing to use the installation, you agree to this use
+        of cookies and data.
+      </p>
+    </div>
+    <div :class="{ active: consent }" class="consent">
+      <div v-if="version === 'horizontal'" class="horizontal">
+        <h1 class="header">
+          Do you realize for what you just gave consent?
         </h1>
-        <p class="body popup__content">
-          When you browse on this installation, cookies and other technologies
-          might collect data to enhance your experience and personalize the
-          content and advertising you see. Visit our Privacy Policy (updated
-          03/06/19) and Consent Tool to learn more, and make choices about the
-          data used by us and our partners in the installation. By clicking
-          “Accept” or by continuing to use the installation, you agree to this
-          use of cookies and data.
-        </p>
       </div>
-      <div v-if="consent" key="consent" class="consent">
-        <div v-if="version === 'horizontal'" class="horizontal">
-          <h1 class="header">
-            Do you realize for what you just gave consent?
-          </h1>
+      <div v-if="version === 'vertical'" class="vertical">
+        <ul class="list">
+          <li class="list__item">
+            You agree to interact with the installation for at least 3 minutes.
+          </li>
+          <li class="list__item">
+            You agree to share at least one picture of this project on one of
+            your social media accounts, meaning Facebook, Twitter or Instagram.
+          </li>
+          <li class="list__item">
+            You agree to give up any rights to pictures, videos, sound and smell
+            related to this installation.
+          </li>
+          <li class="list__item">
+            You agree to speak only in positive terms of this project.
+          </li>
+          <li class="list__item">
+            You agree to high five the person waiting in line behind you.
+          </li>
+          <li class="list__item">
+            You agree to mock all projects from French designers.
+          </li>
+          <li class="list__item">
+            If the designer is present you are not to approach him, unless you
+            are writing a review.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div :class="{ active: news }" class="news">
+      <div v-if="version === 'horizontal'" class="horizontal">
+        <img
+          :src="
+            require('~/assets/images/Mark Zuckerberg testified before a joint hearing of the Commerce and Judiciary Committees on Capitol Hill in Washington Tuesday Pablo Martinez MonsivaisAPREX Shutterstock.jpg')
+          "
+          alt=""
+        />
+      </div>
+      <div v-if="version === 'vertical'" class="vertical">
+        <img
+          v-for="(image, index) in images"
+          :key="index"
+          :src="image.src"
+          class="news__image"
+          :class="{ active: index <= activeCount }"
+          :style="{ left: image.x, top: image.y }"
+        />
+      </div>
+    </div>
+    <div :class="{ active: explain }" class="explain">
+      <div v-if="version === 'horizontal'" class="horizontal">
+        <div class="item">
+          <h1 class="header header--1">Visited Websites</h1>
+          <p class="body">
+            A list of all the websites you visited since installing the plugin
+            that have placed cookies on your device.
+          </p>
         </div>
-        <div v-if="version === 'vertical'" class="vertical">
-          <ul class="list">
-            <li class="list__item">
-              You agree to interact with the installation for at least 3
-              minutes.
-            </li>
-            <li class="list__item">
-              You agree to share at least one picture of this project on one of
-              your social media accounts, meaning Facebook, Twitter or
-              Instagram.
-            </li>
-            <li class="list__item">
-              You agree to give up any rights to pictures, videos, sound and
-              smell related to this installation.
-            </li>
-            <li class="list__item">
-              You agree to speak only in positive terms of this project.
-            </li>
-            <li class="list__item">
-              You agree to high five the person waiting in line behind you.
-            </li>
-            <li class="list__item">
-              You agree to mock all projects from French designers.
-            </li>
-            <li class="list__item">
-              If the designer is present you are not to approach him, unless you
-              are writing a review.
-            </li>
-          </ul>
+        <div class="item">
+          <h1 class="header header--1">Sub domains</h1>
+          <p class="body">
+            The logistic centers in the network. By dividing streams of data it
+            becomes easier to manage and process the data.
+          </p>
+        </div>
+        <div class="item">
+          <h1 class="header header--1">Domains</h1>
+          <p class="body">
+            The registered entities that collect data by placing cookies.
+            However, domains are owned by companies, who are the real 'owners'
+            in the end.
+          </p>
+        </div>
+        <div class="item">
+          <h1 class="header header--1">Companies</h1>
+          <p class="body">
+            Companies are interested in your data to build individual profiles
+            and recognise patterns. Profiles and patterns can be sold when they
+            indicate a high change of conversion.
+          </p>
+        </div>
+        <div class="item">
+          <h1 class="header header--1">Accesible Websites</h1>
+          <p class="body">
+            A list of all the websites you visited since installing the plugin
+            that have placed cookies on your device. This line shows to what
+            other websites the companies also have access. Effectively exposing
+            their network.
+          </p>
         </div>
       </div>
-      <div v-if="news" key="news" class="news">
-        <div v-if="version === 'horizontal'" class="horizontal">
-          <img
-            :src="
-              require('~/assets/images/Mark Zuckerberg testified before a joint hearing of the Commerce and Judiciary Committees on Capitol Hill in Washington Tuesday Pablo Martinez MonsivaisAPREX Shutterstock.jpg')
-            "
-            alt=""
-          />
-        </div>
-        <div v-if="version === 'vertical'" class="vertical">
-          <img
-            v-for="(image, index) in images"
-            :key="index"
-            :src="image.src"
-            class="news__image"
-            :class="{ active: index <= activeCount }"
-            :style="{ left: image.x, top: image.y }"
-          />
-        </div>
-      </div>
-      <div v-if="explain" key="explain" class="explain">
-        <div v-if="version === 'horizontal'" class="horizontal">
-          <div class="item">
-            <h1 class="header header--1">Visited Websites</h1>
-          </div>
-          <div class="item">
-            <h1 class="header header--1">Sub domains</h1>
-          </div>
-          <div class="item">
-            <h1 class="header header--1">Domains</h1>
-          </div>
-          <div class="item">
-            <h1 class="header header--1">Companies</h1>
-          </div>
-          <div class="item">
-            <h1 class="header header--1">Accesible Websites</h1>
-          </div>
-        </div>
-        <div v-if="version === 'vertical'" class="vertical"></div>
-      </div>
-    </transition-group>
+      <div v-if="version === 'vertical'" class="vertical"></div>
+    </div>
   </div>
 </template>
 
@@ -115,7 +135,13 @@ export default {
       activeCount: -1,
       width: 0,
       height: 0,
-      leakImages: 39
+      leakImages: 39,
+      audio: {
+        consent: null,
+        news: null,
+        network: null,
+        explain: null
+      }
     }
   },
   computed: {
@@ -145,18 +171,30 @@ export default {
       if (sequenceVal) {
         this.timeout = false
         this.consent = true
+        if (this.version === 'horizontal') {
+          this.audio.consent.play()
+        }
         setTimeout(() => {
           this.consent = false
           this.news = true
+          if (this.version === 'horizontal') {
+            this.audio.news.play()
+          }
           const imageCount = setInterval(() => {
             this.activeCount++
             if (this.activeCount === this.leakImages) {
               clearInterval(imageCount)
             }
-          }, 500)
+          }, 250)
           setTimeout(() => {
             this.news = false
             this.explain = true
+            if (this.version === 'horizontal') {
+              this.audio.network.play()
+              this.audio.network.onended = () => {
+                this.audio.explain.play()
+              }
+            }
             setTimeout(() => {
               this.explain = false
               this.$store.dispatch('setTimeout', false)
@@ -170,6 +208,10 @@ export default {
   mounted() {
     this.width = window.innerWidth
     this.height = window.innerHeight
+    this.audio.consent = new Audio(require('~/assets/audio/consent.wav'))
+    this.audio.news = new Audio(require('~/assets/audio/news.wav'))
+    this.audio.network = new Audio(require('~/assets/audio/network.wav'))
+    this.audio.explain = new Audio(require('~/assets/audio/explain.wav'))
   }
 }
 </script>
@@ -184,6 +226,15 @@ export default {
   background: $grey;
   color: $primary;
   z-index: 100;
+
+  & > :not(.active) {
+    opacity: 0;
+    transition: all 1s;
+  }
+  .active {
+    opacity: 1;
+    transition: all 1s;
+  }
 }
 
 .popup {
@@ -269,13 +320,22 @@ export default {
   height: 100vh;
   position: relative;
   .horizontal {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
+    display: flex;
     height: 100%;
 
     & > div {
+      width: 20%;
+      box-sizing: border-box;
+      padding: 1em 2em;
       border: 1px solid $primary;
+
+      .header {
+        text-transform: uppercase;
+      }
+
+      .body {
+        font-size: 4em;
+      }
     }
   }
 }

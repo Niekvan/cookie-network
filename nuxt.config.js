@@ -91,6 +91,13 @@ export default {
           exclude: /(node_modules)/
         })
       }
+      config.module.rules.push({
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
+      })
       config.module.rules.unshift({
         test: /\.(png|jpe?g|gif)$/,
         use: {
