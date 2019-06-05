@@ -24,5 +24,8 @@ export default {
   },
   [types.SET_SEQUENCE](state, payload) {
     state.sequence = payload
+  },
+  [types.SET_TURNED](state, payload) {
+    state.turned = payload
   }
 }

@@ -54,6 +54,7 @@ export default {
             break
           default:
             if (!this.sequence) {
+              this.$store.dispatch('setTurned', true)
               if (Number(event.data)) {
                 if (
                   this.websiteIndex <

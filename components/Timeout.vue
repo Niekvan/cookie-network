@@ -169,6 +169,7 @@ export default {
     },
     sequence: function(sequenceVal) {
       if (sequenceVal) {
+        this.$store.dispatch('setTurned', false)
         this.timeout = false
         this.consent = true
         if (this.version === 'horizontal') {
@@ -223,7 +224,8 @@ export default {
   left: 0;
   bottom: 0;
   right: 0;
-  background: $grey;
+  // background: $grey;
+  background: transparent;
   color: $primary;
   z-index: 100;
 

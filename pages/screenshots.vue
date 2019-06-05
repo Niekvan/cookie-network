@@ -12,6 +12,9 @@
     <transition name="fade">
       <timeout v-if="timeOut" version="horizontal" />
     </transition>
+    <transition name="fade">
+      <button-icon v-if="!timeOut && !turned" />
+    </transition>
   </div>
 </template>
 
@@ -20,17 +23,19 @@ import ws from '~/mixins/ws'
 
 import Screenshot from '~/components/Screenshot.vue'
 import Timeout from '~/components/Timeout.vue'
+import ButtonIcon from '~/components/ButtonIcon.vue'
 
 import { mapState } from 'vuex'
 
 export default {
   components: {
     Screenshot,
-    Timeout
+    Timeout,
+    ButtonIcon
   },
   mixins: [ws],
   computed: {
-    ...mapState(['timeOut'])
+    ...mapState(['timeOut', 'turned'])
   }
 }
 </script>

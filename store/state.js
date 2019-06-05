@@ -8,6 +8,7 @@ export default () => ({
   extensionId: process.env.EXTENSION_ID,
   timeOut: true,
   sequence: false,
+  turned: false,
   sideTexts: {
     connected:
       'In the top layer all of the websites you have visisted, since the instalation of the plugin, are listed. This layer shows to what other websites you have visited companies have access to.',
