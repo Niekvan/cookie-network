@@ -17,7 +17,7 @@
             <a
               href="https://www.google.com/chrome/"
               content="noreferer"
-              class="external-link"
+              class="link"
             >
               this link
             </a>
@@ -36,7 +36,7 @@
             <a
               href="https://www.google.com/chrome/"
               content="noreferer"
-              class="external-link"
+              class="link"
             >
               this link
             </a>

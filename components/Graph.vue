@@ -251,34 +251,10 @@ export default {
 }
 .layer {
   fill: $primary;
-  // &.connected {
-  //   fill: $color-connected;
-  // }
-
-  // &.companies {
-  //   fill: $color-company;
-  // }
-
-  // &.domains {
-  //   fill: $color-domain;
-  // }
-
-  // &.subDomains {
-  //   fill: $color-subdomain;
-  // }
-
-  // &.cookies {
-  //   fill: $color-cookie;
-  // }
-
-  // &.visited {
-  //   fill: $color-visited;
-  // }
 }
 
 .lines {
   stroke-width: 3px;
-  // opacity: 0.5;
 
   &--1 {
     stroke: $blue;

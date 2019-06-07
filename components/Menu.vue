@@ -5,15 +5,14 @@
         v-for="(layer, key) in layers"
         :key="key"
         :class="key"
-        :style="{ opacity: active.includes(key) ? 1 : 1 }"
         class="nav__item"
       >
-        <nuxt-link :to="`/${key}`" class="link">
+        <nuxt-link :to="`/${key}`" class="nav__link">
           <div class="nav__content">
             <h2 class="nav__title header header--2">
               {{ key }}
             </h2>
-            <svg class="nav__svg" :viewBox="viewbox">
+            <!-- <svg class="nav__svg" :viewBox="viewbox">
               <g
                 v-for="row in layer.items"
                 :key="`row-${row}`"
@@ -35,7 +34,7 @@
                   />
                 </g>
               </g>
-            </svg>
+            </svg> -->
           </div>
         </nuxt-link>
       </li>
@@ -44,7 +43,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -83,12 +81,6 @@ export default {
       active: ['connected', 'companies', 'domains', 'subdomains', 'visited'],
       viewbox: [0, 0, 200, 200]
     }
-  },
-  computed: {
-    ...mapState(['uniques'])
-  },
-  mounted() {
-    // console.log((this.viewbox[3] - this.viewbox[1]) / this.layers[0].items) //eslint-disable-line
   }
 }
 </script>
@@ -105,6 +97,10 @@ export default {
     padding: 0;
   }
 
+  &__link {
+    color: inherit;
+  }
+
   &__item {
     width: 70%;
     padding-bottom: 70%;
@@ -112,55 +108,47 @@ export default {
     perspective: 400px;
     transform: rotatex(70deg) rotateZ(30deg);
     transition: all 1s 0.2s;
-    // background: $grey-light;
 
     &:not(:first-child) {
       margin-top: -50%;
     }
 
-    .link {
-      color: inherit;
-    }
-
     &.connected {
-      // background: $yellow;
+      background: $violet-1;
       // color: $color-text-inverse;
       z-index: 6;
     }
 
     &.companies {
-      // background: $blue;
+      background: $violet-2;
       z-index: 5;
     }
 
     &.domains {
-      // background: $pink;
+      background: $violet-3;
       // color: $color-text-inverse;
       z-index: 4;
     }
 
     &.subdomains {
-      // background: $green;
+      background: $violet-4;
       z-index: 3;
     }
 
     &.cookies {
-      // background: $color-cookie;
+      background: $violet-5;
       // color: $color-text-inverse;
       z-index: 2;
     }
 
     &.visited {
-      // background: $yellow;
+      background: $violet-6;
       // color: $color-text-inverse;
       z-index: 1;
     }
 
     &:hover {
       transform: rotatex(0deg) rotateZ(0deg) translateZ(200px);
-      // width: 70%;
-      // padding-bottom: 100%;
-      background: $grey-light;
       margin-bottom: 5%;
       z-index: 10;
       transition: all 1s;
