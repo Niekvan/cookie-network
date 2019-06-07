@@ -8,7 +8,9 @@
           :data="formattedCookies"
           :active-index="websiteIndex"
         />
-        <div class="loading" :class="{ pending: pending }" />
+        <div class="loading" :class="{ pending: pending }">
+          <div class="loading__loader" />
+        </div>
       </template>
       <template v-else-if="isChrome && !extensionInstalled">
         <div class="error">
@@ -114,8 +116,40 @@ export default {
     bottom: 50%;
     transition: all 0.2s;
     opacity: 0;
-    background: rgba($black-indigo, 0.2);
+    background: $grey;
 
+    &__loader {
+      width: 10em;
+      height: 10em;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      &::before {
+        content: '';
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        position: absolute;
+        display: block;
+        background: $violet;
+        top: 0;
+        left: 0;
+        transform: translate(4.5em, 0);
+        animation: dotRect 2s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+      &::after {
+        content: 'loading';
+        position: absolute;
+        top: calc(100% + 1em);
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 3em;
+        text-transform: uppercase;
+      }
+    }
     &.pending {
       left: 0;
       bottom: 0;
@@ -123,6 +157,20 @@ export default {
       top: 0;
       opacity: 1;
     }
+  }
+}
+@keyframes dotRect {
+  25% {
+    transform: translate(9em, 4.5em);
+  }
+  50% {
+    transform: translate(4.5em, 9em);
+  }
+  75% {
+    transform: translate(0, 4.5em);
+  }
+  100% {
+    transform: translate(4.5em, 0);
   }
 }
 </style>

@@ -85,7 +85,8 @@ export default {
       connections: null,
       lines: null,
       active: null,
-      raw: null
+      timeout: null,
+      timeoutDelay: 300
     }
   },
   computed: {
@@ -106,7 +107,19 @@ export default {
   },
   watch: {
     activeIndex: function(newIndex) {
-      this.handleClick(this.uniques.visited.values[newIndex], 'visited')
+      clearTimeout(this.timeout)
+      this.connections = {
+        connected: [],
+        companies: [],
+        domains: [],
+        subDomains: [],
+        cookies: [],
+        visited: this.uniques.visited.values[newIndex]
+      }
+      this.lines = null
+      this.timeout = setTimeout(() => {
+        this.handleClick(this.uniques.visited.values[newIndex], 'visited')
+      }, this.timeoutDelay)
     }
   },
   mounted() {
@@ -155,12 +168,6 @@ export default {
         this.$refs.svg.clientHeight - this.margins.top - this.margins.bottom
     },
     async handleClick(node, type) {
-      if (this.active === node) {
-        this.active = null
-        this.connections = null
-        this.lines = null
-        return
-      }
       this.setPending(true)
       this.active = node
       const { data, connected } = await this.$axios.$get('/api/connections', {
@@ -261,7 +268,6 @@ export default {
         visited
       }
       this.lines = lines
-      this.raw = { data, connected }
     },
     ...mapActions(['setPending'])
   }
