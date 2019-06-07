@@ -27,29 +27,4 @@ export default {
 .header {
   text-transform: capitalize;
 }
-
-.link {
-  text-decoration: none;
-  color: $primary;
-  text-transform: uppercase;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: -0.2em;
-    left: -10%;
-    height: 0;
-    width: 120%;
-    background: $green;
-    z-index: -1;
-    transition: height 0.2s;
-  }
-
-  &:hover {
-    &::before {
-      height: 1.7em;
-    }
-  }
-}
 </style>

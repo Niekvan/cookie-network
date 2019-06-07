@@ -1,56 +1,31 @@
 /*
  ** COLORS
  */
- $black-indigo: #071230;
- $violet: #2619d1;
- $cobalt-green: #94ff94;
- $olive-ocher: #d1bd19;
- $white: #fafafa;
- $background-white: #f4f7f6;
+$black-indigo: #071230;
+$cobalt-green: #94ff94;
+$yellow: #F5E170;
+$blue: #00B3E4;
+$orange: #FEA002;
+$green: #00B6C1;
+$violet: #2619d1;
 
- $yellow-dark: #f0d229;
- $yellow: #F5E170;
- $yellow-light: #f7e688;
+$violet-1: #130d69;
+$violet-2: #1c139d;
+$violet-3: #2619d1;
+$violet-4: #5147da;
+$violet-5: #7d75e3;
+$violet-6: #a8a3ed;
 
- $blue-dark: #008cb3;
- $blue: #00B3E4;
- $blue-light: #1aceff;
+$grey-light: #f5f5f5;
+$grey: #d0d0d0;
+$grey-dark: #999999;
 
- $orange-dark: #e59002;
- $orange: #FEA002;
- $orange-light: #feaa1b;
-
- $grey-light: #f5f5f5;
- $grey: #d0d0d0;
- $grey-dark: #999999;
-
- $pink-dark: #e96299;
- $pink: #F5B7D0;
- $pink-light: #f6bcd3;
+$primary: $black-indigo;
 
 
-
- $green-dark: #007880;
- $green: #00B6C1;
- $green-light: #1abdc7;
-
- $color-connected: $black-indigo;
- $color-company: $olive-ocher;
- $color-domain: $violet;
- $color-subdomain: $cobalt-green;
- $color-cookie: blue;
- $color-visited: $black-indigo;
-
- $primary: $black-indigo;
- $highlight: $violet;
-
- $color-text-primary: $primary;
- $color-text-inverse: $background-white;
-
-
- /*
- ** SPACING
- */
+/*
+** SPACING
+*/
 
 $grid-spacing-side: 12rem;
 $grid-spacing-top: 1.7rem;

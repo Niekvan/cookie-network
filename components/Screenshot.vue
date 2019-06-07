@@ -84,7 +84,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    background: $background-white;
+    background: $grey-light;
   }
 
   &__header {

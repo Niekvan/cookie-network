@@ -23,7 +23,7 @@
             <a
               href="https://www.google.com/chrome/"
               content="noreferer"
-              class="external-link"
+              class="link"
             >
               this link
             </a>
@@ -42,7 +42,7 @@
             <a
               href="https://www.google.com/chrome/"
               content="noreferer"
-              class="external-link"
+              class="link"
             >
               this link
             </a>
@@ -114,7 +114,7 @@ export default {
     top: 50%;
     right: 50%;
     bottom: 50%;
-    transition: all 0.2s;
+    transition: opacity 0.25s;
     opacity: 0;
     background: $grey;
 

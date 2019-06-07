@@ -302,7 +302,6 @@ export default {
 
 .lines {
   stroke-width: 3px;
-  // opacity: 0.5;
 
   &--1 {
     stroke: $blue;

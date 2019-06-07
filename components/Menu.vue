@@ -5,37 +5,13 @@
         v-for="(layer, key) in layers"
         :key="key"
         :class="key"
-        :style="{ opacity: active.includes(key) ? 1 : 1 }"
         class="nav__item"
       >
-        <nuxt-link :to="`/${key}`" class="link">
+        <nuxt-link :to="`/${key}`" class="nav__link">
           <div class="nav__content">
             <h2 class="nav__title header header--2">
               {{ key }}
             </h2>
-            <svg class="nav__svg" :viewBox="viewbox">
-              <g
-                v-for="row in layer.items"
-                :key="`row-${row}`"
-                class="circles__row"
-              >
-                <g
-                  v-for="col in layer.items"
-                  :key="`col-${col}`"
-                  class="circle"
-                >
-                  <circle
-                    :cy="
-                      ((viewbox[3] - viewbox[1]) / layer.items) * (row - 0.5)
-                    "
-                    :cx="
-                      ((viewbox[2] - viewbox[0]) / layer.items) * (col - 0.5)
-                    "
-                    r="5"
-                  />
-                </g>
-              </g>
-            </svg>
           </div>
         </nuxt-link>
       </li>
@@ -44,7 +20,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -83,12 +58,6 @@ export default {
       active: ['connected', 'companies', 'domains', 'subdomains', 'visited'],
       viewbox: [0, 0, 200, 200]
     }
-  },
-  computed: {
-    ...mapState(['uniques'])
-  },
-  mounted() {
-    // console.log((this.viewbox[3] - this.viewbox[1]) / this.layers[0].items) //eslint-disable-line
   }
 }
 </script>
@@ -103,6 +72,11 @@ export default {
     margin: auto;
     list-style-type: none;
     padding: 0;
+    counter-reset: layer 7;
+  }
+
+  &__link {
+    color: inherit;
   }
 
   &__item {
@@ -112,55 +86,53 @@ export default {
     perspective: 400px;
     transform: rotatex(70deg) rotateZ(30deg);
     transition: all 1s 0.2s;
-    // background: $grey-light;
 
     &:not(:first-child) {
       margin-top: -50%;
     }
 
-    .link {
-      color: inherit;
-    }
-
     &.connected {
-      // background: $yellow;
+      background: $violet-1;
+      color: $violet-1;
       // color: $color-text-inverse;
       z-index: 6;
     }
 
     &.companies {
-      // background: $blue;
+      background: $violet-2;
+      color: $violet-2;
       z-index: 5;
     }
 
     &.domains {
-      // background: $pink;
+      background: $violet-3;
+      color: $violet-3;
       // color: $color-text-inverse;
       z-index: 4;
     }
 
     &.subdomains {
-      // background: $green;
+      background: $violet-4;
+      color: $violet-4;
       z-index: 3;
     }
 
     &.cookies {
-      // background: $color-cookie;
+      background: $violet-5;
+      color: $violet-5;
       // color: $color-text-inverse;
       z-index: 2;
     }
 
     &.visited {
-      // background: $yellow;
+      background: $violet-6;
+      color: $violet-6;
       // color: $color-text-inverse;
       z-index: 1;
     }
 
     &:hover {
       transform: rotatex(0deg) rotateZ(0deg) translateZ(200px);
-      // width: 70%;
-      // padding-bottom: 100%;
-      background: $grey-light;
       margin-bottom: 5%;
       z-index: 10;
       transition: all 1s;
@@ -172,7 +144,8 @@ export default {
       .nav {
         &__title {
           opacity: 1;
-          transition: opacity 0.2s 1s;
+          transition: all 0.2s 1s;
+          transform: translate(-100%, -50%);
         }
       }
     }
@@ -191,25 +164,23 @@ export default {
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translate(-100%, -50%);
+    transform: translate(-2em, -50%);
     text-transform: capitalize;
     font-weight: normal;
     padding: 0.25em 0.5em;
-    background: $grey-light;
-    opacity: 0;
-    transition: opacity 0.2s 0s;
+    transition: all 0.2s 0s;
+
+    &::before {
+      position: relative;
+      counter-increment: layer -1;
+      content: counter(layer);
+      padding-right: 1em;
+    }
   }
 
   &__text {
     display: inline-block;
     margin: 0;
-  }
-
-  &__svg {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    fill: $green;
   }
 }
 </style>
