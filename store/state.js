@@ -13,7 +13,7 @@ export default () => ({
     connected:
       'In the top layer all of the websites you have visisted, since the instalation of the plugin, are listed. This layer shows to what other websites you have visited companies have access to.',
     companies:
-      'This layers listsb all the companies present in your cookie network. When you select a website to inspect, the companies that have access will be shown. All connections belonging to one company have a distinct color',
+      'This layer lists all the companies present in your cookie network. When you select a website to inspect, the companies that have access will be shown. All connections belonging to one company have a distinct color',
     domains:
       'Companies can use several domains to hide their true identity. When you select a website to inspect, you can see behind what domains companies are trying to hide their identity.',
     subdomains:

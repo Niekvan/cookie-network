@@ -19,12 +19,12 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: subpixel-antialiased;
-  color: $color-text-primary;
+  -webkit-font-smoothing: antialiased;
+  color: $primary;
 }
 
 ::selection {
-  background: $color-text-primary;
+  background: $primary;
   color: $cobalt-green;
 }
 
@@ -55,7 +55,7 @@ p {
   width: 32em;
 }
 
-.external-link {
+.link {
   text-decoration: none;
   color: inherit;
   position: relative;

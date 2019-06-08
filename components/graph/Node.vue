@@ -59,10 +59,10 @@ export default {
 
 <style lang="scss" scoped>
 .node {
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 
   * {
-    transition: opacity 0.5s;
+    transition: opacity 0.3s;
   }
 
   &:hover {
