@@ -6,7 +6,7 @@ export default () => ({
   isChrome: false,
   extensionInstalled: false,
   extensionId: process.env.EXTENSION_ID,
-  timeOut: false,
+  timeOut: true,
   sequence: false,
   turned: false,
   sideTexts: {
