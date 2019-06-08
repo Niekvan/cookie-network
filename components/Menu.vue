@@ -118,15 +118,15 @@ export default {
     }
 
     &.cookies {
-      background: $violet-5;
-      color: $violet-5;
+      background: $violet-6;
+      color: $violet-6;
       // color: $color-text-inverse;
       z-index: 1;
     }
 
     &.visited {
-      background: $violet-6;
-      color: $violet-6;
+      background: $violet-5;
+      color: $violet-5;
       // color: $color-text-inverse;
       z-index: 2;
     }
@@ -158,6 +158,8 @@ export default {
             counter-increment: layer -1;
             content: counter(layer);
             padding-right: 1em;
+            height: 1em;
+            display: inline-block;
           }
         }
       }
@@ -186,14 +188,17 @@ export default {
   }
 
   &__title {
-    text-align: center;
     position: absolute;
     top: 50%;
     left: 0;
     transform: translate(-2em, -50%);
+
+    text-align: center;
     text-transform: capitalize;
     font-weight: normal;
     padding: 0.25em 0.5em;
+    font-size: 3.5em;
+
     transition: all 0.2s 0s;
   }
 
