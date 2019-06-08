@@ -224,8 +224,8 @@ export default {
   left: 0;
   bottom: 0;
   right: 0;
-  // background: $grey;
-  background: transparent;
+  // background: transparent;
+  background: $grey;
   color: $primary;
   z-index: 100;
 
