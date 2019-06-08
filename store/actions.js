@@ -82,7 +82,9 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
     domains,
     subDomains,
     // cookies: [],
-    visited: websites
+    visited: websites.sort((a, b) => {
+      return a.length - b.length
+    })
     // source
   }
   // console.log('comitting') //eslint-disable-line

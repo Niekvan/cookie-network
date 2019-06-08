@@ -19,11 +19,20 @@
         />
       </g>
       <g
-        v-for="layer in nodes"
+        v-for="(layer, index) in nodes"
         :key="layer.key"
         class="layer"
         :class="layer.key"
       >
+        <text
+          class="layer-index"
+          :class="`layer-index--${nodes.length - index}`"
+          x="-1.9em"
+          :y="layer.values[0].y"
+          dy="0.3em"
+        >
+          {{ nodes.length - index }}
+        </text>
         <node
           v-for="node in layer.values"
           :key="node.value"
@@ -63,7 +72,7 @@ export default {
       margins: {
         left: 50,
         top: 50,
-        right: 150,
+        right: 125,
         bottom: 50
       },
       connections: null,
@@ -138,6 +147,7 @@ export default {
       }
       this.setPending(true)
       this.active = node
+      this.lines = null
       const { data, connected } = await this.$axios.$get('/api/connections', {
         params: {
           type,
@@ -253,6 +263,10 @@ export default {
   fill: $primary;
 }
 
+.layer-index {
+  font-size: 2.5em;
+}
+
 .lines {
   stroke-width: 3px;
 
@@ -268,6 +282,14 @@ export default {
 
   &--4 {
     stroke: $green;
+  }
+
+  &--5 {
+    stroke: $violet;
+  }
+
+  &--6 {
+    stroke: $primary;
   }
 }
 </style>

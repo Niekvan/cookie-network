@@ -50,19 +50,19 @@ export default {
   animation: fadein 5s forwards;
 
   &.cc {
-    animation-delay: 2s;
+    animation-delay: 1.6s;
   }
 
   &.cd {
-    animation-delay: 1.5s;
+    animation-delay: 1.1s;
   }
 
   &.ds {
-    animation-delay: 1s;
+    animation-delay: 0.6s;
   }
 
   &.sv {
-    animation-delay: 0.5s;
+    animation-delay: 0.1s;
   }
 }
 </style>

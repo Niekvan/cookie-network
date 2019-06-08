@@ -12,29 +12,6 @@
             <h2 class="nav__title header header--2">
               {{ key }}
             </h2>
-            <!-- <svg class="nav__svg" :viewBox="viewbox">
-              <g
-                v-for="row in layer.items"
-                :key="`row-${row}`"
-                class="circles__row"
-              >
-                <g
-                  v-for="col in layer.items"
-                  :key="`col-${col}`"
-                  class="circle"
-                >
-                  <circle
-                    :cy="
-                      ((viewbox[3] - viewbox[1]) / layer.items) * (row - 0.5)
-                    "
-                    :cx="
-                      ((viewbox[2] - viewbox[0]) / layer.items) * (col - 0.5)
-                    "
-                    r="5"
-                  />
-                </g>
-              </g>
-            </svg> -->
           </div>
         </nuxt-link>
       </li>
@@ -60,22 +37,22 @@ export default {
         domains: {
           text:
             'This layer shows all the domains that are used to collect information from you',
-          items: 7
+          items: 6
         },
         subdomains: {
           text:
             'This layer shows all the different logistic centers through which the information is send further',
           items: 9
         },
-        cookies: {
-          text:
-            'This layer shows all the cookies connected to the selected website',
-          items: 15
-        },
         visited: {
           text:
             'This layer shows all the websites you have visited since installing the plugin',
           items: 5
+        },
+        cookies: {
+          text:
+            'This layer shows all the cookies connected to the selected website',
+          items: 12
         }
       },
       active: ['connected', 'companies', 'domains', 'subdomains', 'visited'],
@@ -95,6 +72,7 @@ export default {
     margin: auto;
     list-style-type: none;
     padding: 0;
+    counter-reset: layer 6;
   }
 
   &__link {
@@ -115,36 +93,42 @@ export default {
 
     &.connected {
       background: $violet-1;
+      color: $violet-1;
       // color: $color-text-inverse;
       z-index: 6;
     }
 
     &.companies {
       background: $violet-2;
+      color: $violet-2;
       z-index: 5;
     }
 
     &.domains {
       background: $violet-3;
+      color: $violet-3;
       // color: $color-text-inverse;
       z-index: 4;
     }
 
     &.subdomains {
       background: $violet-4;
+      color: $violet-4;
       z-index: 3;
     }
 
     &.cookies {
       background: $violet-5;
+      color: $violet-5;
       // color: $color-text-inverse;
-      z-index: 2;
+      z-index: 1;
     }
 
     &.visited {
       background: $violet-6;
+      color: $violet-6;
       // color: $color-text-inverse;
-      z-index: 1;
+      z-index: 2;
     }
 
     &:hover {
@@ -160,7 +144,34 @@ export default {
       .nav {
         &__title {
           opacity: 1;
-          transition: opacity 0.2s 1s;
+          transition: all 0.2s 1s;
+          transform: translate(-100%, -50%);
+        }
+      }
+    }
+
+    &:not(:last-child) {
+      .nav {
+        &__title {
+          &::before {
+            position: relative;
+            counter-increment: layer -1;
+            content: counter(layer);
+            padding-right: 1em;
+          }
+        }
+      }
+    }
+    &:last-child {
+      .nav {
+        &__title {
+          &::before {
+            position: relative;
+            content: '';
+            padding-right: 1.2em;
+            height: 1em;
+            display: inline-block;
+          }
         }
       }
     }
@@ -179,25 +190,16 @@ export default {
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translate(-100%, -50%);
+    transform: translate(-2em, -50%);
     text-transform: capitalize;
     font-weight: normal;
     padding: 0.25em 0.5em;
-    background: $grey-light;
-    opacity: 0;
-    transition: opacity 0.2s 0s;
+    transition: all 0.2s 0s;
   }
 
   &__text {
     display: inline-block;
     margin: 0;
-  }
-
-  &__svg {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    fill: $green;
   }
 }
 </style>
