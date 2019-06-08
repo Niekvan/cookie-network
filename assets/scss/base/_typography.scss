@@ -1,16 +1,13 @@
-@font-face {
-  font-family: 'SchulBuchNord';
-  src: url('~assets//fonts/SchulbuchNordW05-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+/*
+This CSS resource incorporates links to font software which is the valuable copyrighted property of Monotype and/or its suppliers. You may not attempt to copy, install, redistribute, convert, modify or reverse engineer this font software. Please contact Monotype with any questions regarding Web Fonts: http://www.fontshop.com
+*/
 
 @font-face {
   font-family: 'SchulbuchNord';
-  src: url('~assets/fonts/SchulbuchNordW05-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
+  src: url('~assets/fonts/96bf99c9-8907-4c4e-9d22-afb130e0c225.eot?#iefix');
+  src: url('~assets/fonts/96bf99c9-8907-4c4e-9d22-afb130e0c225.eot?#iefix') format('eot'), url('~assets/fonts/47a35741-3584-4dad-b04f-d79fc81db42b.woff2') format('woff2'), url('~assets/fonts/66298d62-e9e6-4688-9f87-c1d37448429a.woff') format('woff'), url('~assets/fonts/3917c830-98bc-45e5-b2e8-56b1cd8c8286.ttf') format('truetype');
 }
+
 
 html {
   font-family: 'SchulBuchNord', sans-serif;

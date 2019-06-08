@@ -16,13 +16,19 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'The cookie network',
+    title: 'The Cookie Network',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          'i,consent,i consent,niek,van,sleeuwen,niek van sleeuwen,van sleeuwen,thesis,master,masters,infoprmation,design,information design,design academy,eindhoven,design academy eindhoven,cookies,cookie,network,project'
+      }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/png', href: '/icon.png' }]
   },
 
   /*
