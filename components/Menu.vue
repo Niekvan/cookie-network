@@ -118,15 +118,15 @@ export default {
     }
 
     &.cookies {
-      background: $violet-6;
-      color: $violet-6;
+      background: $violet-5;
+      color: $violet-5;
       // color: $color-text-inverse;
       z-index: 2;
     }
 
     &.visited {
-      background: $violet-5;
-      color: $violet-5;
+      background: $violet-6;
+      color: $violet-6;
       // color: $color-text-inverse;
       z-index: 1;
     }
