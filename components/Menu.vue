@@ -44,15 +44,15 @@ export default {
             'This layer shows all the different logistic centers through which the information is send further',
           items: 9
         },
-        cookies: {
-          text:
-            'This layer shows all the cookies connected to the selected website',
-          items: 12
-        },
         visited: {
           text:
             'This layer shows all the websites you have visited since installing the plugin',
           items: 5
+        },
+        cookies: {
+          text:
+            'This layer shows all the cookies connected to the selected website',
+          items: 12
         }
       },
       active: ['connected', 'companies', 'domains', 'subdomains', 'visited'],
@@ -72,7 +72,7 @@ export default {
     margin: auto;
     list-style-type: none;
     padding: 0;
-    counter-reset: layer 7;
+    counter-reset: layer 6;
   }
 
   &__link {
@@ -118,17 +118,17 @@ export default {
     }
 
     &.cookies {
-      background: $violet-5;
-      color: $violet-5;
-      // color: $color-text-inverse;
-      z-index: 2;
-    }
-
-    &.visited {
       background: $violet-6;
       color: $violet-6;
       // color: $color-text-inverse;
       z-index: 1;
+    }
+
+    &.visited {
+      background: $violet-5;
+      color: $violet-5;
+      // color: $color-text-inverse;
+      z-index: 2;
     }
 
     &:hover {
