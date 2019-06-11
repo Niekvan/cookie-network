@@ -1,5 +1,8 @@
 <template>
   <div class="icon">
+    <p class="icon__text">
+      Turn the knob to explore the websites
+    </p>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 374.68 350">
       <g id="Layer_2" data-name="Layer 2">
         <g id="Layer_5" data-name="Layer 5">
@@ -17,10 +20,6 @@
         </g>
       </g>
     </svg>
-    <p class="body">
-      Turn the knob to explore <br />
-      the websites
-    </p>
   </div>
 </template>
 
@@ -31,30 +30,20 @@ export default {}
 <style lang="scss" scoped>
 .icon {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 30%;
-  transform: translate(-50%, -50%);
+  top: 100%;
+  left: 0;
+  transform: translate(0, calc(-100% - 6rem));
   z-index: 200;
   padding: 1em 5em;
 
-  &::before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-    background: $grey-light;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
+  &__text {
+    font-size: 3rem;
   }
 
-  .body {
-    font-size: 3.5em;
+  svg {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 10rem;
   }
 }
 .cls-1 {

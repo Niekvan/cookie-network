@@ -1,18 +1,32 @@
 <template>
   <div ref="background" class="container">
     <div :class="{ active: timeout }" class="popup">
-      <h1 class="popup__title header">
-        About cookies in this installation
-      </h1>
-      <p class="body popup__content">
-        When you browse hte information in this installation, cookies and other
-        technologies might share data to enhance your experience and show the
-        personalized content of the creator. Visit our Privacy Policy (updated
-        03/06/19) and Consent Tool to learn more, and make choices about the
-        data used by us and our partners in the installation. By clicking
-        “Accept” or by continuing to use the installation, you agree to this
-        display of cookies and data.
-      </p>
+      <div v-if="version === 'horizontal'" class="horizontal">
+        <div class="website-line">
+          <span class="website-line__bg" />
+          <p class="website-line__content">
+            Go to cookie.i-consent.network to see your cookie network
+          </p>
+        </div>
+        <p class="press-button">
+          Press the button to consent
+        </p>
+      </div>
+      <div v-if="version === 'vertical'" class="vertical">
+        <h1 class="popup__title header">
+          About cookies in this installation
+        </h1>
+        <p class="body popup__content">
+          <!-- eslint-disable -->
+          When you browse the information in this installation, cookies and other
+          technologies might share data to enhance your experience and show the
+          personalized content of the creator. Visit our Privacy Policy (updated
+          03/06/19) and Consent Tool to learn more, and make choices about the
+          data used by us and our partners in the installation. By clicking
+          “Accept” or by continuing to use the installation, you agree to this
+          display of cookies and data.
+        </p>
+      </div>
     </div>
     <div :class="{ active: consent }" class="consent">
       <div v-if="version === 'horizontal'" class="horizontal">
@@ -21,32 +35,22 @@
         </h1>
       </div>
       <div v-if="version === 'vertical'" class="vertical">
-        <ul class="list">
-          <li class="list__item">
-            You agree to interact with the installation for at least 3 minutes.
+        <transition-group 
+          tag="ul"
+          class="list"
+          v-bind:css="false"
+          v-on:before-enter="beforeEnter"
+          v-on:enter="enter"
+        >
+          <li 
+            v-for="(item, index) in consents" 
+            :key="`index-${index}`" 
+            v-bind:data-index="index" 
+            class="list__item"
+          >
+            {{ item }}
           </li>
-          <li class="list__item">
-            You agree to share at least one picture of this project on one of
-            your social media accounts, meaning Facebook, Twitter or Instagram.
-          </li>
-          <li class="list__item">
-            You agree to give up any rights to pictures, videos, sound and smell
-            related to this installation.
-          </li>
-          <li class="list__item">
-            You agree to speak only in positive terms of this project.
-          </li>
-          <li class="list__item">
-            You agree to high five the person waiting in line behind you.
-          </li>
-          <li class="list__item">
-            You agree to mock all projects from French designers.
-          </li>
-          <li class="list__item">
-            If the designer is present you are not to approach him, unless you
-            are writing a review.
-          </li>
-        </ul>
+        </transition-group>
       </div>
     </div>
     <div :class="{ active: news }" class="news">
@@ -152,7 +156,8 @@ export default {
         news: null,
         network: null,
         explain: null
-      }
+      },
+      consents: []
     }
   },
   computed: {
@@ -170,7 +175,7 @@ export default {
       }
       return images
     },
-    ...mapState(['sequence'])
+    ...mapState(['sequence', 'turned'])
   },
   watch: {
     explain: function(newValue) {
@@ -183,6 +188,15 @@ export default {
         this.$store.dispatch('setTurned', false)
         this.timeout = false
         this.consent = true
+        this.consents = [
+          'You agree to interact with the installation for at least 3 minutes.',
+          'You agree to share at least one picture of this project on one of your social media accounts, meaning Facebook, Twitter or Instagram.',
+          'You agree to give up any rights to pictures, videos, sound and smell related to this installation.',
+          'You agree to speak only in positive terms of this project.',
+          'You agree to high five the person waiting in line behind you.',
+          'You agree to mock all projects from French designers.',
+          'If the designer is present you are not to approach him, unless you are writing a review.'
+        ]
         if (this.version === 'horizontal') {
           this.audio.consent.play()
         }
@@ -224,6 +238,17 @@ export default {
     this.audio.news = new Audio(require('~/assets/audio/news.wav'))
     this.audio.network = new Audio(require('~/assets/audio/network.wav'))
     this.audio.explain = new Audio(require('~/assets/audio/explain.wav'))
+  },
+  methods: {
+    beforeEnter: function(el) {
+      el.style.display = 'none'
+    },
+    enter: function(el, done) {
+      const delay = el.dataset.index * 750
+      setTimeout(function() {
+        el.style.display = 'block'
+      }, delay + 1000)
+    }
   }
 }
 </script>
@@ -251,16 +276,58 @@ export default {
 }
 
 .popup {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  padding: 5rem 7.5rem;
-  border: 5px solid $orange;
-  border-radius: 5px;
-  color: $primary;
-  transform: translate(-50%, -50%);
+  .vertical {
+    padding: 6em 8rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
   &__title {
-    font-size: 5em;
+    font-size: 15em;
+    margin-bottom: 0.6em;
+  }
+  &__content {
+    font-size: 8rem;
+  }
+
+  .horizontal {
+    .website-line {
+      &__content {
+        font-size: 8rem;
+        padding-top: 5px;
+        color: $grey;
+        display: inline-block;
+        animation: textslide 30s infinite linear;
+      }
+      &__bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 12.5rem;
+        background: $violet;
+        z-index: -1;
+      }
+    }
+    .press-button {
+      position: fixed;
+      right: 2.5em;
+      bottom: 2.5em;
+      text-align: right;
+      font-size: 3rem;
+
+      &::after {
+        content: ' \02193';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 4rem;
+        animation: updown 1s alternate infinite;
+      }
+    }
   }
 }
 
@@ -287,19 +354,7 @@ export default {
       padding: 2em;
       width: 80%;
       margin: auto;
-      // background: $grey-light;
       position: relative;
-
-      // &::before {
-      //   content: '';
-      //   height: 100%;
-      //   width: 100%;
-      //   background: $grey-dark;
-      //   position: absolute;
-      //   top: 1em;
-      //   left: -1em;
-      //   z-index: -1;
-      // }
 
       &__item {
         margin-bottom: 1em;
@@ -350,6 +405,22 @@ export default {
         font-size: 4em;
       }
     }
+  }
+}
+@keyframes updown {
+  from {
+    top: 50%;
+  }
+  to {
+    top: 110%;
+  }
+}
+@keyframes textslide {
+  from {
+    transform: translateX(125%);
+  }
+  to {
+    transform: translateX(-100%);
   }
 }
 </style>
