@@ -5,19 +5,19 @@
         About cookies in this installation
       </h1>
       <p class="body popup__content">
-        When you browse on this installation, cookies and other technologies
-        might collect data to enhance your experience and personalize the
-        content and advertising you see. Visit our Privacy Policy (updated
+        When you browse hte information in this installation, cookies and other
+        technologies might share data to enhance your experience and show the
+        personalized content of the creator. Visit our Privacy Policy (updated
         03/06/19) and Consent Tool to learn more, and make choices about the
         data used by us and our partners in the installation. By clicking
-        “Accept” or by continuing to use the installation, you agree to this use
-        of cookies and data.
+        “Accept” or by continuing to use the installation, you agree to this
+        display of cookies and data.
       </p>
     </div>
     <div :class="{ active: consent }" class="consent">
       <div v-if="version === 'horizontal'" class="horizontal">
         <h1 class="header">
-          Do you realize for what you just gave consent?
+          Do you actually know what you just consented to?
         </h1>
       </div>
       <div v-if="version === 'vertical'" class="vertical">
@@ -74,23 +74,34 @@
         <div class="item">
           <h1 class="header header--1">Visited Websites</h1>
           <p class="body">
-            A list of all the websites you visited since installing the plugin
-            that have placed cookies on your device.
+            A list of all the websites you have visited since installing the
+            plugin. You can select a website to inspect and see where your data
+            ends up and what other websites you have used are also within reach
+            of the companies using the selected webste to collect data on you.
           </p>
         </div>
         <div class="item">
           <h1 class="header header--1">Sub domains</h1>
           <p class="body">
-            The logistic centers in the network. By dividing streams of data it
-            becomes easier to manage and process the data.
+            Sub-domains fulfill the role of logistic center. By setting up
+            multiple sub-domains, it is easier to manage the data flows coming
+            from the cookies. You can create different channels, making it
+            easier to distinguish between types of data. When you inspect a
+            website you can see the vast number of subdomains usualy used to
+            streamline the flow of data from you to the companies several layers
+            up.
           </p>
         </div>
         <div class="item">
           <h1 class="header header--1">Domains</h1>
           <p class="body">
-            The registered entities that collect data by placing cookies.
-            However, domains are owned by companies, who are the real 'owners'
-            in the end.
+            A domain has a registration in a public registrar, including a
+            location and an owner. This information is used to connect domains
+            to countries and companies. The country is important to know,
+            becasue of different laws and regulations on privacy and the usage
+            of data. Companies can use several domains to hide their true
+            identity. When you select a website to inspect, you can see behind
+            what domains companies are trying to hide their identity.
           </p>
         </div>
         <div class="item">
@@ -102,7 +113,7 @@
           </p>
         </div>
         <div class="item">
-          <h1 class="header header--1">Accesible Websites</h1>
+          <h1 class="header header--1">Accessible Websites</h1>
           <p class="body">
             A list of all the websites you visited since installing the plugin
             that have placed cookies on your device. This line shows to what

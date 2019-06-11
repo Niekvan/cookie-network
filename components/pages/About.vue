@@ -9,42 +9,41 @@
           technology. This project is not an attack at the technology itself nor
           the usage for advertising. However, during my research, companies have
           tried as much as they can to keep me out of this network. If we want
-          to be able to change what is going we, we first have to understand the
+          to be able to change what is going, we first have to understand the
           current dynamics.
         </p>
       </div>
       <div class="page__content--body">
         <p class="body">
-          May 25, 2018, the General Data Protection Regulations (GDPR) became
-          affective. The cookie pop-ups we see now more than ever before are a
-          direct result of the GDPR. However, we don't realize what happens
-          after we press the button 'I accept/cosent/agree/understand'. Through
-          the technology of cookies unknown entities get access to your browsing
-          behaviour. Data that in itself might not be valubale, but combined
-          with the data of thousands or millions of other individuals it will
-          show patterns. Several examples have shown, however, that the data are
-          also used for other purposes, such as influencing democratic voting
-          processes. Next to this remark, it has also been shown that companies
-          don’t take their security measures too serious. Resulting in data
-          leaks and access to very sensitive and detailed profiles to be used by
-          anyone with malicious intent.
+          On May 25, 2018, the General Data Protection Regulations (GDPR) became
+          effective. The daily overdose of cookie pop-ups appearing on our
+          computer screens is a direct result of this regulation. However, we
+          hardly realize what happens when we simply press the button 'I
+          accept/consent/agree/understand'. Through the technology of cookies
+          unknown entities get access to your browsing behaviour. In itself the
+          data that are retrieved might not be so valuable but combined with the
+          data of thousands or millions of other individuals, patterns will
+          become manifest. Several incidents have shown, however, that the data
+          are also used for other purposes. Democratic election processes have
+          been influenced through the access to personal data. Additionally, it
+          has also been shown that companies don’t take their security measures
+          too seriously, resulting in data leaks and access to sensitive and
+          detailed profiles to be used by anyone without or with malicious
+          intent.
         </p>
       </div>
       <div class="page__content--body--2">
         <p class="body">
-          May 25, 2018, the General Data Protection Regulations (GDPR) became
-          affective. The cookie pop-ups we see now more than ever before are a
-          direct result of the GDPR. However, we don't realize what happens
-          after we press the button 'I accept/cosent/agree/understand'. Through
-          the technology of cookies unknown entities get access to your browsing
-          behaviour. Data that in itself might not be valubale, but combined
-          with the data of thousands or millions of other individuals it will
-          show patterns. Several examples have shown, however, that the data are
-          also used for other purposes, such as influencing democratic voting
-          processes. Next to this remark, it has also been shown that companies
-          don’t take their security measures too serious. Resulting in data
-          leaks and access to very sensitive and detailed profiles to be used by
-          anyone with malicious intent.
+          The cookie network is a project consisting of two elements; this
+          website and a Chrome browser plugin. The plugin communicates to a
+          central database. In this database all the cookies that are placed on
+          your device are stored. Only you have access to these data using an
+          unique cookie value. This website shows you the result of your
+          browsing behaviour and let's you explore the cookie network which has
+          been built up around you. The tab epxlore shows you a visual
+          representation of the network. You can select websites and see through
+          which channels who has access to your data and what other websites
+          they use to gather more information.
         </p>
       </div>
     </div>

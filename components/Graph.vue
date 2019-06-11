@@ -86,7 +86,7 @@ export default {
       lines: null,
       active: null,
       timeout: null,
-      timeoutDelay: 300
+      timeoutDelay: 500
     }
   },
   computed: {
