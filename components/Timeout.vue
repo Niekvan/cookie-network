@@ -147,7 +147,11 @@ export default {
       consent: false,
       news: false,
       explain: false,
-      slideTime: 10000,
+      slideTime: {
+        consent: 7000,
+        news: 9000,
+        explain: 18000
+      },
       activeCount: -1,
       width: 0,
       height: 0,
@@ -219,8 +223,10 @@ export default {
             if (this.version === 'vertical') {
               this.audio.network.play()
               this.audio.network.onended = () => {
-                eventBus.$emit('Swedbank')
                 this.audio.explain.play()
+                setTimeout(() => {
+                  eventBus.$emit('Swedbank')
+                }, 7500)
               }
               this.audio.explain.onended = () => {
                 eventBus.$emit('return')
@@ -228,14 +234,15 @@ export default {
                 this.$store.dispatch('setTimeout', false)
                 this.$store.dispatch('setSequence', false)
               }
+            } else {
+              setTimeout(() => {
+                this.explain = false
+                this.$store.dispatch('setTimeout', false)
+                this.$store.dispatch('setSequence', false)
+              }, this.slideTime.explain)
             }
-            // setTimeout(() => {
-            //   this.explain = false
-            //   this.$store.dispatch('setTimeout', false)
-            //   this.$store.dispatch('setSequence', false)
-            // }, this.slideTime)
-          }, this.slideTime)
-        }, this.slideTime)
+          }, this.slideTime.news)
+        }, this.slideTime.consent)
       }
     }
   },
@@ -294,9 +301,13 @@ export default {
   &__title {
     font-size: 15em;
     margin-bottom: 0.6em;
+    line-height: 0.9;
   }
   &__content {
-    font-size: 8rem;
+    font-size: 4rem;
+    opacity: 0.8;
+    width: 60%;
+    line-height: 1.3;
   }
 
   .horizontal {
@@ -321,18 +332,17 @@ export default {
     }
     .press-button {
       position: fixed;
-      right: 2.5em;
-      bottom: 2.5em;
+      right: 4em;
+      bottom: -0.8em;
       text-align: right;
-      font-size: 3rem;
+      font-size: 8rem;
 
       &::after {
         content: ' \02193';
         position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 4rem;
+        bottom: 100%;
+        right: -1em;
+        font-size: 10rem;
         animation: updown 1s alternate infinite;
       }
     }
@@ -417,10 +427,10 @@ export default {
 }
 @keyframes updown {
   from {
-    top: 50%;
+    bottom: 110%;
   }
   to {
-    top: 110%;
+    bottom: 0.15em;
   }
 }
 @keyframes textslide {
