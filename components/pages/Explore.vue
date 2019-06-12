@@ -24,7 +24,7 @@
             The cookie network website requires a plugin in order to show you
             your data. Please follow
             <a
-              href="https://www.google.com/chrome/"
+              href="https://chrome.google.com/webstore/detail/cookie-extension/lhlmojgecghoebjacoemcdghelcfgmbf"
               content="noreferer"
               class="link"
             >
