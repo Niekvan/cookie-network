@@ -40,6 +40,7 @@ export default {
     const isChrome =
       !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)
     if (isChrome) {
+      console.log(this.extensionId) //eslint-disable-line
       window.chrome.runtime.sendMessage(
         this.extensionId,
         'version',

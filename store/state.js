@@ -5,7 +5,7 @@ export default () => ({
   uniques: null,
   isChrome: false,
   extensionInstalled: false,
-  extensionId: 'efgheecpmnljhpookennhpjjpgbkimfp',
+  extensionId: process.env.EXTENSION_ID,
   sideTexts: {
     connected:
       'In the top layer all of the websites you have visisted, since the instalation of the plugin, are listed. Companies are interested to see your overall behaviour online. They want to have access to more than one website, so they can built a more complete profile. This layer shows all websites you have visited since installing the plugin. However, it will higlight all the websites that are accessible by companies that have access to the webiste you selected to inspect in the bottom layer.',
