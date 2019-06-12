@@ -15,6 +15,9 @@
       :class="{ active: activeTabs.includes('about') }"
       @click.native="updateActiveTabs('about')"
     />
+    <transition name="fade">
+      <button-icon v-if="buttonActive" />
+    </transition>
   </section>
 </template>
 
@@ -23,6 +26,7 @@ import Intro from '~/components/pages/Intro.vue'
 import About from '~/components/pages/About.vue'
 import Explore from '~/components/pages/Explore.vue'
 import Timeout from '~/components/Timeout.vue'
+import ButtonIcon from '~/components/ButtonIcon.vue'
 
 import { mapActions, mapState } from 'vuex'
 
@@ -31,7 +35,8 @@ export default {
     Intro,
     About,
     Explore,
-    Timeout
+    Timeout,
+    ButtonIcon
   },
   data() {
     return {
@@ -39,7 +44,13 @@ export default {
     }
   },
   computed: {
-    ...mapState(['extensionId', 'timeOut'])
+    buttonActive() {
+      return (
+        (this.timeOut && !this.sequence && !this.turned) ||
+        (!this.timeOut && !this.turned)
+      )
+    },
+    ...mapState(['extensionId', 'timeOut', 'turned', 'sequence'])
   },
   mounted() {
     const isChrome =

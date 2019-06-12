@@ -148,9 +148,10 @@ export default {
       news: false,
       explain: false,
       slideTime: {
-        consent: 7000,
-        news: 9000,
-        explain: 18000
+        consent: 9000,
+        news: 12000,
+        example: 6200,
+        explain: 8000 + 17000
       },
       activeCount: -1,
       width: 0,
@@ -180,7 +181,7 @@ export default {
       }
       return images
     },
-    ...mapState(['sequence', 'turned'])
+    ...mapState(['sequence'])
   },
   watch: {
     explain: function(newValue) {
@@ -226,7 +227,7 @@ export default {
                 this.audio.explain.play()
                 setTimeout(() => {
                   eventBus.$emit('Swedbank')
-                }, 7500)
+                }, this.slideTime.example)
               }
               this.audio.explain.onended = () => {
                 eventBus.$emit('return')
@@ -249,10 +250,10 @@ export default {
   mounted() {
     this.width = window.innerWidth
     this.height = window.innerHeight
-    this.audio.consent = new Audio(require('~/assets/audio/new/consent.wav'))
-    this.audio.news = new Audio(require('~/assets/audio/new/news.wav'))
-    this.audio.network = new Audio(require('~/assets/audio/new/network.wav'))
-    this.audio.explain = new Audio(require('~/assets/audio/new/explain.wav'))
+    this.audio.consent = new Audio(require('~/assets/audio/12-06/consent.wav'))
+    this.audio.news = new Audio(require('~/assets/audio/12-06/news.wav'))
+    this.audio.network = new Audio(require('~/assets/audio/12-06/network.wav'))
+    this.audio.explain = new Audio(require('~/assets/audio/12-06/explain.wav'))
   },
   methods: {
     beforeEnter: function(el) {
@@ -423,22 +424,6 @@ export default {
         font-size: 4em;
       }
     }
-  }
-}
-@keyframes updown {
-  from {
-    bottom: 110%;
-  }
-  to {
-    bottom: 0.15em;
-  }
-}
-@keyframes textslide {
-  from {
-    transform: translateX(125%);
-  }
-  to {
-    transform: translateX(-100%);
   }
 }
 </style>

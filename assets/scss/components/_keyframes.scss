@@ -1,0 +1,19 @@
+@keyframes updown {
+  from {
+    bottom: 110%;
+  }
+
+  to {
+    bottom: 0.15em;
+  }
+}
+
+@keyframes textslide {
+  from {
+    transform: translateX(125%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
