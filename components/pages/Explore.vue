@@ -63,6 +63,7 @@ import Navbar from '~/components/Navbar.vue'
 import Graph from '~/components/Graph.vue'
 import ButtonIcon from '~/components/ButtonIcon.vue'
 import ws from '~/mixins/ws'
+import { eventBus } from '~/mixins/eventBus'
 
 import { mapState } from 'vuex'
 
@@ -92,6 +93,14 @@ export default {
       'turned',
       'timeOut'
     ])
+  },
+  mounted() {
+    setTimeout(() => {
+      eventBus.$emit('Swedbank')
+    }, 5000)
+    setTimeout(() => {
+      eventBus.$emit('return')
+    }, 10000)
   }
 }
 </script>

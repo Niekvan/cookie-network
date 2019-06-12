@@ -35,17 +35,17 @@
         </h1>
       </div>
       <div v-if="version === 'vertical'" class="vertical">
-        <transition-group 
+        <transition-group
           tag="ul"
           class="list"
           v-bind:css="false"
           v-on:before-enter="beforeEnter"
           v-on:enter="enter"
         >
-          <li 
-            v-for="(item, index) in consents" 
-            :key="`index-${index}`" 
-            v-bind:data-index="index" 
+          <li
+            v-for="(item, index) in consents"
+            :key="`index-${index}`"
+            v-bind:data-index="index"
             class="list__item"
           >
             {{ item }}
@@ -133,6 +133,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { eventBus } from '~/mixins/eventBus'
 export default {
   props: {
     version: {
@@ -197,13 +198,13 @@ export default {
           'You agree to mock all projects from French designers.',
           'If the designer is present you are not to approach him, unless you are writing a review.'
         ]
-        if (this.version === 'horizontal') {
+        if (this.version === 'vertical') {
           this.audio.consent.play()
         }
         setTimeout(() => {
           this.consent = false
           this.news = true
-          if (this.version === 'horizontal') {
+          if (this.version === 'vertical') {
             this.audio.news.play()
           }
           const imageCount = setInterval(() => {
@@ -215,17 +216,24 @@ export default {
           setTimeout(() => {
             this.news = false
             this.explain = true
-            if (this.version === 'horizontal') {
+            if (this.version === 'vertical') {
               this.audio.network.play()
               this.audio.network.onended = () => {
+                eventBus.$emit('Swedbank')
                 this.audio.explain.play()
               }
+              this.audio.explain.onended = () => {
+                eventBus.$emit('return')
+                this.explain = false
+                this.$store.dispatch('setTimeout', false)
+                this.$store.dispatch('setSequence', false)
+              }
             }
-            setTimeout(() => {
-              this.explain = false
-              this.$store.dispatch('setTimeout', false)
-              this.$store.dispatch('setSequence', false)
-            }, this.slideTime)
+            // setTimeout(() => {
+            //   this.explain = false
+            //   this.$store.dispatch('setTimeout', false)
+            //   this.$store.dispatch('setSequence', false)
+            // }, this.slideTime)
           }, this.slideTime)
         }, this.slideTime)
       }
@@ -234,10 +242,10 @@ export default {
   mounted() {
     this.width = window.innerWidth
     this.height = window.innerHeight
-    this.audio.consent = new Audio(require('~/assets/audio/consent.wav'))
-    this.audio.news = new Audio(require('~/assets/audio/news.wav'))
-    this.audio.network = new Audio(require('~/assets/audio/network.wav'))
-    this.audio.explain = new Audio(require('~/assets/audio/explain.wav'))
+    this.audio.consent = new Audio(require('~/assets/audio/new/consent.wav'))
+    this.audio.news = new Audio(require('~/assets/audio/new/news.wav'))
+    this.audio.network = new Audio(require('~/assets/audio/new/network.wav'))
+    this.audio.explain = new Audio(require('~/assets/audio/new/explain.wav'))
   },
   methods: {
     beforeEnter: function(el) {

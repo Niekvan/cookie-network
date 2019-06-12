@@ -53,6 +53,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import { eventBus } from '~/mixins/eventBus'
 import Node from './graph/Node'
 import Line from './graph/Line'
 export default {
@@ -126,6 +127,12 @@ export default {
     this.handleResize()
     window.addEventListener('resize', this.handleResize)
     this.handleClick(this.uniques.visited.values[this.activeIndex], 'visited')
+    eventBus.$on('Swedbank', () => {
+      this.handleClick('https://www.swedbank.com', 'visited')
+    })
+    eventBus.$on('return', () => {
+      this.handleClick(this.uniques.visited.values[this.activeIndex], 'visited')
+    })
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
