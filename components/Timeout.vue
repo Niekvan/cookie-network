@@ -230,10 +230,12 @@ export default {
                 }, this.slideTime.example)
               }
               this.audio.explain.onended = () => {
+                console.log('ended') //eslint-disable-line
                 eventBus.$emit('return')
                 this.explain = false
                 this.$store.dispatch('setTimeout', false)
                 this.$store.dispatch('setSequence', false)
+                console.log(this.sequence) //eslint-disable-line
               }
             } else {
               setTimeout(() => {
