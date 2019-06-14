@@ -200,8 +200,8 @@ export default {
           'You agree to give up any rights to pictures, videos, sound and smell related to this installation.',
           'You agree to speak only in positive terms of this project.',
           'You agree to high five the person waiting in line behind you.',
-          'You agree to mock all projects from French designers.',
-          'If the designer is present you are not to approach him, unless you are writing a review.'
+          'You agree to accept the delivery of two laundray machines that will be delivered at your place in two days.',
+          'You agree to donate your body to sience.'
         ]
         if (this.version === 'vertical') {
           this.audio.consent.play()
