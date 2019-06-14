@@ -28,6 +28,11 @@
         </p>
       </div>
     </div>
+    <div :class="{ active: headphones }" class="headphones">
+      <p class="headphones__text">
+        Please put on the headphones
+      </p>
+    </div>
     <div :class="{ active: consent }" class="consent">
       <div v-if="version === 'horizontal'" class="horizontal">
         <h1 class="header">
@@ -144,11 +149,13 @@ export default {
   data() {
     return {
       timeout: true,
+      headphones: false,
       consent: false,
       news: false,
       explain: false,
       slideTime: {
         consent: 9000,
+        headphones: 2000,
         news: 12000,
         example: 6200,
         explain: 8000 + 17000
@@ -193,7 +200,7 @@ export default {
       if (sequenceVal) {
         this.$store.dispatch('setTurned', false)
         this.timeout = false
-        this.consent = true
+        this.headphones = true
         this.consents = [
           'You agree to interact with the installation for at least 3 minutes.',
           'You agree to share at least one picture of this project on one of your social media accounts, meaning Facebook, Twitter or Instagram.',
@@ -207,45 +214,49 @@ export default {
           this.audio.consent.play()
         }
         setTimeout(() => {
-          this.consent = false
-          this.news = true
-          if (this.version === 'vertical') {
-            this.audio.news.play()
-          }
-          const imageCount = setInterval(() => {
-            this.activeCount++
-            if (this.activeCount === this.leakImages) {
-              clearInterval(imageCount)
-            }
-          }, 250)
+          this.headphones = false
+          this.consent = true
           setTimeout(() => {
-            this.news = false
-            this.explain = true
+            this.headphones = false
+            this.news = true
             if (this.version === 'vertical') {
-              this.audio.network.play()
-              this.audio.network.onended = () => {
-                this.audio.explain.play()
-                setTimeout(() => {
-                  eventBus.$emit('Swedbank')
-                }, this.slideTime.example)
-              }
-              this.audio.explain.onended = () => {
-                console.log('ended') //eslint-disable-line
-                eventBus.$emit('return')
-                this.explain = false
-                this.$store.dispatch('setTimeout', false)
-                this.$store.dispatch('setSequence', false)
-                console.log(this.sequence) //eslint-disable-line
-              }
-            } else {
-              setTimeout(() => {
-                this.explain = false
-                this.$store.dispatch('setTimeout', false)
-                this.$store.dispatch('setSequence', false)
-              }, this.slideTime.explain)
+              this.audio.news.play()
             }
-          }, this.slideTime.news)
-        }, this.slideTime.consent)
+            const imageCount = setInterval(() => {
+              this.activeCount++
+              if (this.activeCount === this.leakImages) {
+                clearInterval(imageCount)
+              }
+            }, 250)
+            setTimeout(() => {
+              this.news = false
+              this.explain = true
+              if (this.version === 'vertical') {
+                this.audio.network.play()
+                this.audio.network.onended = () => {
+                  this.audio.explain.play()
+                  setTimeout(() => {
+                    eventBus.$emit('Swedbank')
+                  }, this.slideTime.example)
+                }
+                this.audio.explain.onended = () => {
+                  console.log('ended') //eslint-disable-line
+                  eventBus.$emit('return')
+                  this.explain = false
+                  this.$store.dispatch('setTimeout', false)
+                  this.$store.dispatch('setSequence', false)
+                  console.log(this.sequence) //eslint-disable-line
+                }
+              } else {
+                setTimeout(() => {
+                  this.explain = false
+                  this.$store.dispatch('setTimeout', false)
+                  this.$store.dispatch('setSequence', false)
+                }, this.slideTime.explain)
+              }
+            }, this.slideTime.news)
+          }, this.slideTime.consent)
+        }, this.slideTime.headphones)
       }
     }
   },
@@ -349,6 +360,17 @@ export default {
         animation: updown 1s alternate infinite;
       }
     }
+  }
+}
+
+.headphones {
+  &__text {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 8rem;
   }
 }
 
