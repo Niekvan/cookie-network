@@ -46,6 +46,7 @@ export default {
             break
           case 'timeout':
             this.$store.dispatch('setTimeout', true)
+            this.$store.dispatch('setTurned', false)
             break
           case 'start':
             if (this.timeOut) {
@@ -55,6 +56,7 @@ export default {
           default:
             if (!this.sequence) {
               this.$store.dispatch('setTurned', true)
+              this.$store.dispatch('setTimeout', false)
               if (Number(event.data)) {
                 if (
                   this.websiteIndex <

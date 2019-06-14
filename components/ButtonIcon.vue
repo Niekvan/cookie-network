@@ -1,6 +1,6 @@
 <template>
   <p class="icon">
-    Turn the knob to explore the network
+    Turn the knob to explore
   </p>
 </template>
 
@@ -11,9 +11,9 @@ export default {}
 <style lang="scss" scoped>
 .icon {
   position: fixed;
-  left: 4em;
+  left: 3em;
   bottom: -0.8em;
-  text-align: right;
+  text-align: left;
   font-size: 8rem;
   z-index: 1000;
 
