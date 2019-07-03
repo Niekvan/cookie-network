@@ -3,7 +3,19 @@
     <navbar title="Explore" />
     <div class="page__content">
       <template v-if="isChrome && extensionInstalled">
-        <graph class="graph" :data="formattedCookies" />
+        <graph
+          v-if="formattedCookies.length"
+          class="graph"
+          :data="formattedCookies"
+        />
+        <div v-else class="no-data">
+          <div class="error">
+            <h1 class="header header--1">
+              You didn't visit any websites with cookies since installing the
+              plugin
+            </h1>
+          </div>
+        </div>
         <div class="loading" :class="{ pending: pending }">
           <div class="loading__loader" />
         </div>
@@ -52,10 +64,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Navbar from '~/components/Navbar.vue'
 import Graph from '~/components/Graph.vue'
-
-import { mapState } from 'vuex'
 
 export default {
   components: {
