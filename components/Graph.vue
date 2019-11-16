@@ -225,14 +225,18 @@ export default {
             type: 'sv'
           }
         })
-        const values = [...cd, ...ds, ...sv, ...cc].filter(
-          (item, index, array) =>
-            array.map(item => item.filter).indexOf(item.filter) === index
-        )
-        lines.push({
-          values,
-          company
-        })
+        const values = [...cd, ...ds, ...sv, ...cc]
+          .filter(
+            (item, index, array) =>
+              array.map(item => item.filter).indexOf(item.filter) === index
+          )
+          .filter(item => item.source && item.target)
+        if (values.length) {
+          lines.push({
+            values,
+            company
+          })
+        }
       })
 
       this.setPending(false)

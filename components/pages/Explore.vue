@@ -26,7 +26,9 @@
             Please install the extension from the chrome webstore.
           </h1>
           <p class="body">
-            Unforunately the plugin cannot not be installed at the moment. Google has removed hte plugin due to a violation of their privacy agreement.
+            Unforunately the plugin cannot not be installed at the moment.
+            Google has removed hte plugin due to a violation of their privacy
+            agreement.
             <!-- The cookie network website requires a plugin in order to show you
             your data. Please follow
             <a
