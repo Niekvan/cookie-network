@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.5
+version: v1.16.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -975,3 +975,16 @@ patch:
         patched: '2019-10-04T00:03:47.491Z'
     - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
         patched: '2019-10-04T00:03:47.491Z'
+  SNYK-JS-LODASH-567746:
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > lodash:
+        patched: '2020-06-25T13:50:42.606Z'
+    - snyk > snyk-nuget-plugin > dotnet-deps-parser > lodash:
+        patched: '2020-06-25T13:50:42.606Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-06-25T13:50:42.606Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/ruby-semver > lodash:
+        patched: '2020-06-25T13:50:42.606Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-06-25T13:50:42.606Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > lodash:
+        patched: '2020-06-25T13:50:42.606Z'
