@@ -970,6 +970,32 @@ patch:
         patched: '2019-07-04T13:55:56.647Z'
     - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
         patched: '2019-07-04T13:55:56.647Z'
+    - '@nuxtjs/pwa > @nuxtjs/workbox > lodash':
+        patched: '2020-06-25T14:02:55.891Z'
+    - node-sass > sass-graph > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - '@nuxtjs/axios > @nuxtjs/proxy > http-proxy-middleware > lodash':
+        patched: '2020-06-25T14:02:55.891Z'
+    - '@nuxtjs/style-resources > sass-resources-loader > async > lodash':
+        patched: '2020-06-25T14:02:55.891Z'
+    - node-sass > gaze > globule > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - nuxt > @nuxt/webpack > hard-source-webpack-plugin > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - nuxt > @nuxt/webpack > html-webpack-plugin > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > hard-source-webpack-plugin > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > html-webpack-plugin > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - nuxt > @nuxt/webpack > optimize-css-assets-webpack-plugin > last-call-webpack-plugin > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > optimize-css-assets-webpack-plugin > last-call-webpack-plugin > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/types > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/types > lodash:
+        patched: '2020-06-25T14:02:55.891Z'
   SNYK-JS-HTTPSPROXYAGENT-469131:
     - snyk > proxy-agent > https-proxy-agent:
         patched: '2019-10-04T00:03:47.491Z'
