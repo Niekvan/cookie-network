@@ -1,3 +1,3 @@
-export const getText = state => layer => {
+export const getText = (state) => (layer) => {
   return state.sideTexts[layer]
 }

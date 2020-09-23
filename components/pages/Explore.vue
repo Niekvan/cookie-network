@@ -75,20 +75,20 @@ import Graph from '~/components/Graph.vue'
 export default {
   components: {
     Navbar,
-    Graph
+    Graph,
   },
   computed: {
     formattedCookies() {
       const pattern = new RegExp(/^(.+)?(\..+){2}$/)
-      return this.cookies.map(item => {
+      return this.cookies.map((item) => {
         item.subDomain = pattern.test(item.sub_domain)
           ? item.sub_domain
           : `.${item.sub_domain}`
         return item
       })
     },
-    ...mapState(['cookies', 'pending', 'isChrome', 'extensionInstalled'])
-  }
+    ...mapState(['cookies', 'pending', 'isChrome', 'extensionInstalled']),
+  },
 }
 </script>
 

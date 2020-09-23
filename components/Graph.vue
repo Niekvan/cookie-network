@@ -55,15 +55,15 @@ import Line from './graph/Line'
 export default {
   components: {
     Node,
-    connectionLine: Line
+    connectionLine: Line,
   },
   props: {
     data: {
       type: Array,
       default() {
         return []
-      }
-    }
+      },
+    },
   },
   data() {
     return {
@@ -73,12 +73,12 @@ export default {
         left: 50,
         top: 50,
         right: 125,
-        bottom: 50
+        bottom: 50,
       },
       connections: null,
       lines: null,
       active: null,
-      raw: null
+      raw: null,
     }
   },
   computed: {
@@ -88,11 +88,11 @@ export default {
         const layers = array.length
         return {
           values: this.calcPosition(item, index, layers, key),
-          key
+          key,
         }
       })
     },
-    ...mapState(['uniques'])
+    ...mapState(['uniques']),
   },
   mounted() {
     this.handleResize()
@@ -110,7 +110,7 @@ export default {
         return {
           value: item,
           x,
-          y
+          y,
         }
       })
     },
@@ -125,11 +125,11 @@ export default {
     opacity(node, type) {
       if (this.connections) {
         return {
-          opacity: this.connections[type].includes(node) ? 1 : 0.1
+          opacity: this.connections[type].includes(node) ? 1 : 0.1,
         }
       }
       return {
-        opacity: 1
+        opacity: 1,
       }
     },
     handleResize() {
@@ -151,22 +151,22 @@ export default {
       const { data, connected } = await this.$axios.$get('/api/connections', {
         params: {
           type,
-          entry: node
-        }
+          entry: node,
+        },
       })
 
-      const cookies = data.map(item => item.cookie)
+      const cookies = data.map((item) => item.cookie)
 
       const subDomains = data
-        .map(item => item.subDomain)
+        .map((item) => item.subDomain)
         .filter((item, index, array) => array.indexOf(item) === index)
 
       const domains = data
-        .map(item => item.domain)
+        .map((item) => item.domain)
         .filter((item, index, array) => array.indexOf(item) === index)
 
       const companies = data
-        .map(item => item.company)
+        .map((item) => item.company)
         .filter((item, index, array) => array.indexOf(item) === index)
 
       let visited = null
@@ -175,66 +175,66 @@ export default {
         visited = []
       } else {
         visited = data
-          .map(item => item.visited)
+          .map((item) => item.visited)
           .filter((item, index, array) => array.indexOf(item) === index)
       }
 
-      const connectedWebsites = connected.map(item => item.connected)
+      const connectedWebsites = connected.map((item) => item.connected)
 
       const lines = []
 
-      companies.forEach(company => {
-        const filtered = data.filter(item => item.company === company)
+      companies.forEach((company) => {
+        const filtered = data.filter((item) => item.company === company)
         const cc = connected
-          .filter(item => item.company === company)
-          .map(item => {
+          .filter((item) => item.company === company)
+          .map((item) => {
             if (item.connected !== 'undefined') {
               return {
                 filter: `${item.company}-${item.connected}`,
                 source: this.$refs[`${item.company}-companies`],
                 target: this.$refs[`${item.connected}-connected`],
-                type: 'cc'
+                type: 'cc',
               }
             } else {
               return {
-                filter: 'nothing'
+                filter: 'nothing',
               }
             }
           })
-        const cd = filtered.map(item => {
+        const cd = filtered.map((item) => {
           return {
             filter: `${item.company}-${item.domain}`,
             target: this.$refs[`${item.company}-companies`],
             source: this.$refs[`${item.domain}-domains`],
-            type: 'cd'
+            type: 'cd',
           }
         })
-        const ds = filtered.map(item => {
+        const ds = filtered.map((item) => {
           return {
             filter: `${item.domain}-${item.subDomain}`,
             target: this.$refs[`${item.domain}-domains`],
             source: this.$refs[`${item.subDomain}-subDomains`],
-            type: 'ds'
+            type: 'ds',
           }
         })
-        const sv = filtered.map(item => {
+        const sv = filtered.map((item) => {
           return {
             filter: `${item.subDomain}-${item.visited}`,
             target: this.$refs[`${item.subDomain}-subDomains`],
             source: this.$refs[`${item.visited}-visited`],
-            type: 'sv'
+            type: 'sv',
           }
         })
         const values = [...cd, ...ds, ...sv, ...cc]
           .filter(
             (item, index, array) =>
-              array.map(item => item.filter).indexOf(item.filter) === index
+              array.map((item) => item.filter).indexOf(item.filter) === index
           )
-          .filter(item => item.source && item.target)
+          .filter((item) => item.source && item.target)
         if (values.length) {
           lines.push({
             values,
-            company
+            company,
           })
         }
       })
@@ -247,13 +247,13 @@ export default {
         domains,
         subDomains,
         cookies,
-        visited
+        visited,
       }
       this.lines = lines
       this.raw = { data, connected }
     },
-    ...mapActions(['setPending'])
-  }
+    ...mapActions(['setPending']),
+  },
 }
 </script>
 

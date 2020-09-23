@@ -6,9 +6,7 @@
     <p class="body">
       <slot></slot>
     </p>
-    <nuxt-link v-if="back" to="/" class="link body">
-      back
-    </nuxt-link>
+    <nuxt-link v-if="back" to="/" class="link body"> back </nuxt-link>
   </div>
 </template>
 
@@ -17,9 +15,9 @@ export default {
   props: {
     back: {
       type: Boolean,
-      default: true
-    }
-  }
+      default: true,
+    },
+  },
 }
 </script>
 

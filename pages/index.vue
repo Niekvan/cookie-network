@@ -26,15 +26,15 @@ export default {
   components: {
     Intro,
     About,
-    Explore
+    Explore,
   },
   data() {
     return {
-      activeTabs: ['intro']
+      activeTabs: ['intro'],
     }
   },
   computed: {
-    ...mapState(['extensionId'])
+    ...mapState(['extensionId']),
   },
   mounted() {
     const isChrome =
@@ -43,7 +43,7 @@ export default {
       window.chrome.runtime.sendMessage(
         this.extensionId,
         'version',
-        response => {
+        (response) => {
           if (!response) {
             this.setInstalled(false)
             return true
@@ -68,8 +68,8 @@ export default {
           break
       }
     },
-    ...mapActions(['setChromeBrowser', 'setInstalled'])
-  }
+    ...mapActions(['setChromeBrowser', 'setInstalled']),
+  },
 }
 </script>
 

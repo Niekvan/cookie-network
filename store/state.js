@@ -17,6 +17,6 @@ export default () => ({
       'Sub-domains fulfill the role of logistic center. Where a domain has a registration including a location and owner, sub-domains are linked to their domain. By setting up multiple sub-domains, it is easier to manage the data flows coming from the cookies. You can create different channels, making it easier to distinguish between types of data. When you inspect a website you can see the vast number of subdomains usualy used to streamline the flow of data from you to the companies several layers up.',
     cookies: `Cookies are the starting point for the creation of the cookie network. A network of connections built by companies to track your online behaviour. But what is a cookie exactly? A cookie is a standard format with one unique ingredient. That unique ingredient is you. By assigning a unique value to the cookie, your signature so to say, it is possible for companies to combine all the data coming from one cookie together. A cookie is a static file that is placed in your device and it needs you in order to become valuable, it needs your signature.`,
     visited:
-      'A list of all the websites you have visited since installing the plugin. You can select a website to inspect and see where your data ends up and what other websites you have used are also within reach of the companies using the selected webste to collect data on you.'
-  }
+      'A list of all the websites you have visited since installing the plugin. You can select a website to inspect and see where your data ends up and what other websites you have used are also within reach of the companies using the selected webste to collect data on you.',
+  },
 })

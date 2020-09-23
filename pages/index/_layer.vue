@@ -13,12 +13,12 @@
 import IntroSlide from '~/components/IntroSlide.vue'
 export default {
   components: {
-    IntroSlide
+    IntroSlide,
   },
   asyncData({ params, store }) {
     const text = store.getters.getText(params.layer)
     return { title: params.layer, text }
-  }
+  },
 }
 </script>
 

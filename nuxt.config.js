@@ -3,9 +3,8 @@ import pkg from './package'
 require('dotenv').config()
 
 export default {
-  mode: 'universal',
   server: {
-    port: process.env.PORT
+    port: process.env.PORT,
   },
   /*
    ** Headers of the page
@@ -15,9 +14,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
     ],
-    link: [{ rel: 'icon', type: 'image/png', href: '/icon.png' }]
+    link: [{ rel: 'icon', type: 'image/png', href: '/icon.png' }],
   },
 
   /*
@@ -43,20 +42,20 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    'cookie-universal-nuxt'
+    'cookie-universal-nuxt',
   ],
   /*
    ** Global Sas variables and mixins
    */
   styleResources: {
-    scss: ['./assets/scss/abstracts/*.scss']
+    scss: ['./assets/scss/abstracts/*.scss'],
   },
   /*
    ** Axios module configuration
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    proxy: true
+    proxy: true,
   },
 
   proxy: {
@@ -64,9 +63,9 @@ export default {
       target: process.env.API_URL,
       changeOrigin: true,
       headers: {
-        'access-token': process.env.LOCAL_API_KEY
-      }
-    }
+        'access-token': process.env.LOCAL_API_KEY,
+      },
+    },
   },
 
   /*
@@ -83,9 +82,9 @@ export default {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
         })
       }
-    }
-  }
+    },
+  },
 }

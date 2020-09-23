@@ -1,8 +1,6 @@
 <template>
   <intro-slide :back="false">
-    <template slot="header">
-      The cookie network
-    </template>
+    <template slot="header"> The cookie network </template>
     <template>
       Welcome to the visual part of The Cookie Network. On this website you can
       explore the network of your cookies. Cookies are small text files placed
@@ -22,8 +20,8 @@
 import IntroSlide from '~/components/IntroSlide.vue'
 export default {
   components: {
-    IntroSlide
-  }
+    IntroSlide,
+  },
 }
 </script>
 

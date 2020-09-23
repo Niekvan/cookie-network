@@ -12,7 +12,7 @@ export const setInstalled = ({ commit }, payload) => {
   commit(types.SET_INSTALLED, payload)
 }
 
-export const nuxtServerInit = async function({ commit, state }, { app }) {
+export const nuxtServerInit = async function ({ commit, state }, { app }) {
   // console.log('getting cookie') //eslint-disable-line
   const cookie = await app.$cookies.get('map-identifier')
   // console.log('have cookie') //eslint-disable-line
@@ -20,15 +20,11 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
     commit(types.SET_ID, cookie)
   } else {
     const newId =
-      Math.random()
-        .toString(36)
-        .substr(2, 15) +
-      Math.random()
-        .toString(36)
-        .substr(2, 15)
+      Math.random().toString(36).substr(2, 15) +
+      Math.random().toString(36).substr(2, 15)
     app.$cookies.set('map-identifier', newId, {
       path: '/',
-      maxAge: 60 * 60 * 24 * 7 * 52 * 5
+      maxAge: 60 * 60 * 24 * 7 * 52 * 5,
     })
     commit(types.SET_ID, newId)
   }
@@ -36,17 +32,17 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
   const { data } = await app.$axios.$get(`${process.env.API_URL}/api/cookies`, {
     headers: {
       'access-token': process.env.LOCAL_API_KEY,
-      'map-identifier': state.ID
-    }
+      'map-identifier': state.ID,
+    },
   })
 
   const pattern = new RegExp(/^(.+)?(\..+){2}$/)
   // console.log('map data') //eslint-disable-line
-  data.map(item => {
+  data.map((item) => {
     if (item.latitude && item.longtitude) {
       item.location = {
         lat: item.latitude,
-        long: item.longtitude
+        long: item.longtitude,
       }
     }
     if (item.country === null) {
@@ -61,19 +57,19 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
   })
   // console.log('map uniques') //eslint-disable-line
   const subDomains = data
-    .map(item => item.subDomain)
+    .map((item) => item.subDomain)
     .filter((item, index, array) => array.indexOf(item) === index)
 
   const domains = data
-    .map(item => item.domain)
+    .map((item) => item.domain)
     .filter((item, index, array) => array.indexOf(item) === index)
 
   const companies = data
-    .map(item => item.company)
+    .map((item) => item.company)
     .filter((item, index, array) => array.indexOf(item) === index)
 
   const websites = data
-    .map(item => item.website)
+    .map((item) => item.website)
     .filter((item, index, array) => array.indexOf(item) === index)
 
   const uniques = {
@@ -84,7 +80,7 @@ export const nuxtServerInit = async function({ commit, state }, { app }) {
     // cookies: [],
     visited: websites.sort((a, b) => {
       return a.length - b.length
-    })
+    }),
     // source
   }
   // console.log('comitting') //eslint-disable-line

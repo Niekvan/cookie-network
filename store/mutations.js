@@ -18,5 +18,5 @@ export default {
   },
   [types.SET_INSTALLED](state, payload) {
     state.extensionInstalled = payload
-  }
+  },
 }

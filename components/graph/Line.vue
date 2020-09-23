@@ -15,8 +15,8 @@ export default {
   props: {
     data: {
       type: Object,
-      default() {}
-    }
+      default() {},
+    },
   },
   computed: {
     existing() {
@@ -29,8 +29,8 @@ export default {
         this.data.source[0].node &&
         this.data.target[0].node
       )
-    }
-  }
+    },
+  },
 }
 </script>
 

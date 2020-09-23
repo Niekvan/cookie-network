@@ -1,5 +1,5 @@
 <template>
-<!-- eslint-disable -->
+  <!-- eslint-disable -->
   <g
     class="node"
     :class="node.value"
@@ -22,38 +22,38 @@ export default {
   props: {
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     index: {
       type: Number,
-      default: 0
+      default: 0,
     },
     length: {
       type: Number,
-      default: 0
+      default: 0,
     },
     level: {
       type: Number,
-      default: 1
+      default: 1,
     },
     levels: {
       type: Number,
-      default: 5
+      default: 5,
     },
     node: {
       type: Object,
-      default() {}
+      default() {},
     },
     screen: {
       type: Object,
       default() {
         return {
           width: 0,
-          height: 0
+          height: 0,
         }
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>
 

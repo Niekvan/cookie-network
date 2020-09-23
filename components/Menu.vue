@@ -27,38 +27,38 @@ export default {
         connected: {
           text:
             'This layer shows all the websites you have visited who are connected to one of the highlighted companies',
-          items: 5
+          items: 5,
         },
         companies: {
           text:
             'This layers shows all the companies with access to the selected website you have visited before',
-          items: 4
+          items: 4,
         },
         domains: {
           text:
             'This layer shows all the domains that are used to collect information from you',
-          items: 6
+          items: 6,
         },
         subdomains: {
           text:
             'This layer shows all the different logistic centers through which the information is send further',
-          items: 9
+          items: 9,
         },
         visited: {
           text:
             'This layer shows all the websites you have visited since installing the plugin',
-          items: 5
+          items: 5,
         },
         cookies: {
           text:
             'This layer shows all the cookies connected to the selected website',
-          items: 12
-        }
+          items: 12,
+        },
       },
       active: ['connected', 'companies', 'domains', 'subdomains', 'visited'],
-      viewbox: [0, 0, 200, 200]
+      viewbox: [0, 0, 200, 200],
     }
-  }
+  },
 }
 </script>
 
