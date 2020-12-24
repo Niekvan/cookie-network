@@ -16,7 +16,7 @@
     "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/axios": "^5.12.3",
     "@nuxtjs/pwa": "^3.0.2",
     "@nuxtjs/style-resources": "^1.0.0",
     "cookie-universal-nuxt": "^2.1.4",
