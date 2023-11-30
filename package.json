@@ -18,14 +18,14 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.3",
     "@nuxtjs/pwa": "^3.0.2",
-    "@nuxtjs/style-resources": "^1.0.0",
+    "@nuxtjs/style-resources": "^2.0.0",
     "cookie-universal-nuxt": "^2.1.4",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
-    "node-sass": "^4.14.1",
-    "nuxt": "^2.14.6",
+    "node-sass": "^7.0.2",
+    "nuxt": "^3.0.0",
     "sass-loader": "^10.0.2",
-    "snyk": "^1.425.4"
+    "snyk": "^1.685.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
